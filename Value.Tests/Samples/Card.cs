@@ -39,6 +39,11 @@ namespace Value.Tests.Samples
             this.Suit = suit;
         }
 
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
+        {
+            return new List<object>() { this.Value, this.CardDescription, this.DisplayName, this.Suit };
+        }
+
         public Suit Suit { get; private set; }
 
         public string CardDescription { get; private set; }
@@ -137,11 +142,6 @@ namespace Value.Tests.Samples
             }
 
             return result;
-        }
-
-        protected override IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality()
-        {
-            return new List<object>() { this.Value, this.CardDescription, this.DisplayName, this.Suit };
         }
     }
 }

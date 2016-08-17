@@ -20,16 +20,14 @@ namespace Value
     using System.Collections.Generic;
 
     /// <summary>
-    ///     A list equals to any other instance with the same content. 
-    ///     In other words: 2 different instances containing the same items will be equals.
+    ///     A list with equality based on its content and not on the list's reference 
+    ///     (i.e.: 2 different instances containing the same items will be equals).
     /// </summary>
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="T">Type of the listed items.</typeparam>
     public class ListByValue<T> : EquatableByValue<ListByValue<T>>, IList<T>
     {
         private readonly List<T> itemsList;
-
-        private int hashCode;
 
         public ListByValue() : this(new List<T>())
         {
@@ -109,32 +107,9 @@ namespace Value
             }
         }
 
-        protected override IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality()
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
             return (IEnumerable<object>)this.itemsList;
-        }
-
-        //protected override bool EqualsImpl(ListByValue<T> other)
-        //{
-        //    return !(this.itemsList.Except(other).Any());
-        //}
-
-        //protected override int GetHashCodeImpl()
-        //{
-        //    if (this.hashCode == 0)
-        //    {
-        //        foreach (var item in this.itemsList)
-        //        {
-        //            this.hashCode = (this.hashCode * 397) ^ item.GetHashCode();
-        //        }
-        //    }
-
-        //    return this.hashCode;
-        //}
-
-        private void ResetHashCode()
-        {
-            this.hashCode = 0;
         }
     }
 }

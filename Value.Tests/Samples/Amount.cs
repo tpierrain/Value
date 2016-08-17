@@ -36,6 +36,11 @@ namespace Value.Tests.Samples
             this.currency = currency;
         }
 
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
+        {
+            return new List<object>() { this.quantity, this.currency };
+        }
+
         public decimal Quantity { get { return this.quantity; } }
 
         public Currency Currency { get { return this.currency; } }
@@ -48,11 +53,6 @@ namespace Value.Tests.Samples
             }
 
             return new Amount(this.Quantity + otherAmount.Quantity, this.Currency);
-        }
-
-        protected override IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality()
-        {
-            return new List<object>() { this.quantity, this.currency };
         }
 
         public override string ToString()

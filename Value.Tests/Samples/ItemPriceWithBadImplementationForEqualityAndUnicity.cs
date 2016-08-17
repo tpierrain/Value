@@ -16,8 +16,7 @@
 namespace Value.Tests.Samples
 {
     /// <summary>
-    /// Price for an item. Bad Value Type implementation because doesn't override EqualsImpl() and GetHashCodeImpl() methods
-    /// in order to take ItemName property into account.
+    /// Price for an item. Bad Value Type implementation because doesn't override GetAllAttributesToBeUsedForEquality()
     /// </summary>
     public class ItemPriceWithBadImplementationForEqualityAndUnicity : Amount
     {

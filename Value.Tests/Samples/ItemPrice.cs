@@ -24,7 +24,6 @@ namespace Value.Tests.Samples
     public class ItemPrice : Amount
     {
         private readonly string itemName;
-
         private int? hashCode;
 
         public ItemPrice(string itemName, decimal quantity, Currency currency) : base(quantity, currency)
@@ -32,33 +31,12 @@ namespace Value.Tests.Samples
             this.itemName = itemName;
         }
 
-        public string ItemName { get { return this.itemName; } }
-
-        protected override IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality()
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return base.ProvideListOfAllAttributesToBeUsedForEquality().Concat(new List<object>() { this.ItemName });
+            return base.GetAllAttributesToBeUsedForEquality().Concat(new List<object>() { this.ItemName });
         }
 
-        //protected override bool EqualsImpl(Amount other)
-        //{
-        //    var theOther = other as ItemPrice;
-        //    if (theOther == null)
-        //    {
-        //        return false;
-        //    }
-
-        //    return base.EqualsImpl(other) && (this.ItemName == theOther.ItemName);
-        //}
-
-        //protected override int GetHashCodeImpl()
-        //{
-        //    if (this.hashCode == null)
-        //    {
-        //        this.hashCode = base.GetHashCodeImpl() ^ this.ItemName.GetHashCode();
-        //    }
-
-        //    return this.hashCode.Value;
-        //}
+        public string ItemName { get { return this.itemName; } }
 
         public override string ToString()
         {

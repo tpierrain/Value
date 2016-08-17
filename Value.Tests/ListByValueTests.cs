@@ -29,7 +29,7 @@ namespace Value.Tests
             var listA = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var listB = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
 
-            Check.That(listA).IsEqualTo(listB);
+            Check.That(listA).IsEqualTo(listB).And.ContainsExactly(Card.Parse("QC"), Card.Parse("TS"));
         }
 
         [Test]
@@ -103,6 +103,7 @@ namespace Value.Tests
         public void Should_raise_NotImplementedException_when_calling_IsReadOnly_property()
         {
             var list = new ListByValue<int>() { 0, 1, 2 };
+            
             Check.ThatCode(() => list.IsReadOnly).Throws<NotImplementedException>();
         }
     }

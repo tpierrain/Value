@@ -32,6 +32,7 @@ namespace Value.Tests
             Check.That(amount == null).IsFalse();
             Check.That(amount != null).IsTrue();
             Check.That(amount.Equals((object)null)).IsFalse();
+            Check.That(amount.Equals(null)).IsFalse();
         }
 
         [Test]
@@ -122,6 +123,15 @@ namespace Value.Tests
             var set = new HashSet<ItemPriceWithBadImplementationForEqualityAndUnicity> { itemPrice };
 
             Check.That(set).ContainsExactly(itemPriceWithOtherValues); // because bad implementation of unicity
+        }
+
+        [Test]
+        public void Should_work_with_null_when_using_equality_operator()
+        {
+            Amount amount1 = null;
+            Amount amount2 = null;
+
+            Check.That(amount1 == amount2).IsTrue();
         }
     }
 }

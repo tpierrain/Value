@@ -17,7 +17,7 @@ namespace Value
 {
     /// <summary>
     ///     Base class for any Value Type (i.e. the 'Value Object' oxymoron of DDD).
-    ///     Will force you to implement abstract methods for Equality (EqualsImpl) and Unicity (GetHashCodeImpl).
+    ///     All you have to do is to implement the abstract methods: <see cref="EquatableByValue{T}.GetAllAttributesToBeUsedForEquality"/>
     /// </summary>
     /// <typeparam name="T">Domain type to be 'turned' into a Value Type.</typeparam>
     public abstract class ValueType<T> : EquatableByValue<T> where T : ValueType<T>

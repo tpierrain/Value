@@ -29,24 +29,19 @@ namespace Value
 
         public bool Equals(T other)
         {
-            return this.EqualsImpl(other);
-        }
-
-        protected abstract IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality();
-
-        protected virtual void ResetHashCode()
-        {
-            this.hashCode = null;
-        }
-
-        private bool EqualsImpl(T other)
-        {
             if (other == null)
             {
                 return false;
             }
 
-            return this.ProvideListOfAllAttributesToBeUsedForEquality().SequenceEqual(other.ProvideListOfAllAttributesToBeUsedForEquality());
+            return this.GetAllAttributesToBeUsedForEquality().SequenceEqual(other.GetAllAttributesToBeUsedForEquality());
+        }
+
+        protected abstract IEnumerable<object> GetAllAttributesToBeUsedForEquality();
+
+        protected virtual void ResetHashCode()
+        {
+            this.hashCode = null;
         }
 
         public override bool Equals(object obj)
@@ -63,7 +58,7 @@ namespace Value
                 return false;
             }
 
-            return this.EqualsImpl(other);
+            return this.Equals(other);
         }
 
         public override int GetHashCode()
@@ -77,7 +72,7 @@ namespace Value
             {
                 var code = 0;
 
-                foreach (var attribute in this.ProvideListOfAllAttributesToBeUsedForEquality())
+                foreach (var attribute in this.GetAllAttributesToBeUsedForEquality())
                 {
                     code = (code * 397) ^ ((attribute == null) ? 0 : attribute.GetHashCode());
                 }

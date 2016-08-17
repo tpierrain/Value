@@ -2,7 +2,7 @@
 
 A zero-dependancy pico library (or code snippets shed) to support your implementation of Value Types in your C# projects.
 
-![Value](https://github.com/tpierrain/Value/blob/master/Value.jpg?raw=true)
+![Value](https://github.com/tpierrain/Value/blob/master/Value-small.jpg?raw=true)
 
 ## Value Types?
 "*Value Type* (instance)" is an alternative name for DDD's *Value Objects* (VO) since VO is an oxymoron (indeed, an object has a changing state by nature). 

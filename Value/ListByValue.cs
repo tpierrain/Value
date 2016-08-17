@@ -18,7 +18,6 @@ namespace Value
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     ///     A list equals to any other instance with the same content. 
@@ -53,13 +52,13 @@ namespace Value
 
         public void Add(T item)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.itemsList.Add(item);
         }
 
         public void Clear()
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.itemsList.Clear();
         }
 
@@ -75,7 +74,7 @@ namespace Value
 
         public bool Remove(T item)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             return this.itemsList.Remove(item);
         }
 
@@ -90,13 +89,13 @@ namespace Value
 
         public void Insert(int index, T item)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.itemsList.Insert(index, item);
         }
 
         public void RemoveAt(int index)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.itemsList.RemoveAt(index);
         }
 
@@ -105,28 +104,33 @@ namespace Value
             get { return this.itemsList[index]; }
             set
             {
-                this.ResetHashCode();
+                base.ResetHashCode();
                 this.itemsList[index] = value;
             }
         }
 
-        protected override bool EqualsImpl(ListByValue<T> other)
+        protected override IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality()
         {
-            return !(this.itemsList.Except(other).Any());
+            return (IEnumerable<object>)this.itemsList;
         }
 
-        protected override int GetHashCodeImpl()
-        {
-            if (this.hashCode == 0)
-            {
-                foreach (var item in this.itemsList)
-                {
-                    this.hashCode = (this.hashCode * 397) ^ item.GetHashCode();
-                }
-            }
+        //protected override bool EqualsImpl(ListByValue<T> other)
+        //{
+        //    return !(this.itemsList.Except(other).Any());
+        //}
 
-            return this.hashCode;
-        }
+        //protected override int GetHashCodeImpl()
+        //{
+        //    if (this.hashCode == 0)
+        //    {
+        //        foreach (var item in this.itemsList)
+        //        {
+        //            this.hashCode = (this.hashCode * 397) ^ item.GetHashCode();
+        //        }
+        //    }
+
+        //    return this.hashCode;
+        //}
 
         private void ResetHashCode()
         {

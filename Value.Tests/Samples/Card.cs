@@ -16,6 +16,7 @@
 namespace Value.Tests.Samples
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// One of the 52 cards from a poker deck. Every card has a value, a suit and a name.
@@ -138,20 +139,9 @@ namespace Value.Tests.Samples
             return result;
         }
 
-        protected override bool EqualsImpl(Card other)
+        protected override IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality()
         {
-            return (this.DisplayName == other.DisplayName && this.Value == other.Value && this.CardDescription == other.CardDescription && this.Suit == other.Suit);
-        }
-
-        protected override int GetHashCodeImpl()
-        {
-            var hashCode = this.DisplayName.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.Value;
-            hashCode = (hashCode * 397) ^ this.CardDescription.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.DisplayName.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.Suit.GetHashCode();
-
-            return hashCode;
+            return new List<object>() { this.Value, this.CardDescription, this.DisplayName, this.Suit };
         }
     }
 }

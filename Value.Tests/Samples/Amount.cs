@@ -16,6 +16,7 @@
 namespace Value.Tests.Samples
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// A quantity of money.
@@ -49,21 +50,9 @@ namespace Value.Tests.Samples
             return new Amount(this.Quantity + otherAmount.Quantity, this.Currency);
         }
 
-        protected override bool EqualsImpl(Amount other)
+        protected override IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality()
         {
-            return (this.quantity == other.quantity && this.currency == other.currency);
-        }
-
-        protected override int GetHashCodeImpl()
-        {
-            if (this.hashCode == null)
-            {
-                this.hashCode = 0;
-                this.hashCode = (this.hashCode * 397) ^ this.quantity.GetHashCode();
-                this.hashCode = (this.hashCode * 397) ^ this.currency.GetHashCode();
-            }
-
-            return this.hashCode.Value;
+            return new List<object>() { this.quantity, this.currency };
         }
 
         public override string ToString()

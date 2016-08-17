@@ -83,12 +83,12 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_mismatch_a_derived_instance_with_same_common_values_when_it_is_cast_to_base_value_type()
+        public void Should_distinguish_a_derived_instance_from_a_base_value_type_with_same_sub_common_values()
         {
             var amount = new Amount(new decimal(50.3), Currency.Dollar);
             var itemPrice = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
 
-            Check.That(amount.Equals((object)itemPrice)).IsTrue();
+            Check.That(amount.Equals((object)itemPrice)).IsFalse();
         }
 
         [Test]

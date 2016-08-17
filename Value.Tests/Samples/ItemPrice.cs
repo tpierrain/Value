@@ -15,6 +15,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Value.Tests.Samples
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     /// Price for an item.
     /// </summary>
@@ -31,26 +34,31 @@ namespace Value.Tests.Samples
 
         public string ItemName { get { return this.itemName; } }
 
-        protected override bool EqualsImpl(Amount other)
+        protected override IEnumerable<object> ProvideListOfAllAttributesToBeUsedForEquality()
         {
-            var theOther = other as ItemPrice;
-            if (theOther == null)
-            {
-                return false;
-            }
-
-            return base.EqualsImpl(other) && (this.ItemName == theOther.ItemName);
+            return base.ProvideListOfAllAttributesToBeUsedForEquality().Concat(new List<object>() { this.ItemName });
         }
 
-        protected override int GetHashCodeImpl()
-        {
-            if (this.hashCode == null)
-            {
-                this.hashCode = base.GetHashCodeImpl() ^ this.ItemName.GetHashCode();
-            }
+        //protected override bool EqualsImpl(Amount other)
+        //{
+        //    var theOther = other as ItemPrice;
+        //    if (theOther == null)
+        //    {
+        //        return false;
+        //    }
 
-            return this.hashCode.Value;
-        }
+        //    return base.EqualsImpl(other) && (this.ItemName == theOther.ItemName);
+        //}
+
+        //protected override int GetHashCodeImpl()
+        //{
+        //    if (this.hashCode == null)
+        //    {
+        //        this.hashCode = base.GetHashCodeImpl() ^ this.ItemName.GetHashCode();
+        //    }
+
+        //    return this.hashCode.Value;
+        //}
 
         public override string ToString()
         {

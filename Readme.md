@@ -21,6 +21,8 @@ __A Value Type is:__
 E.g.: 
 
  - __ValueType<T>__: making all your Value Types deriving from this base class will avoid you to forget to properly implement Equality (IEquatable) and Unicity (GetHashCode()) on ALL your fields. Very Handy!
+ - __ListByValue<T>__: a list with equality based on its content and not on references (i.e.: 2 different instances containing the same items will be equals).
  - ...
+
  
  

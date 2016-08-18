@@ -1,6 +1,6 @@
 # Value
 
-A zero-dependancy pico library (or code snippets shed) to help you to __easily implement Value Types__ in your C# projects without polluting your domain logic with boiler-plate code.
+is a zero-dependancy pico library (or code snippets shed) to help you to __easily implement Value Types__ in your C# projects without polluting your domain logic with boiler-plate code.
 
 ![Value](https://github.com/tpierrain/Value/blob/master/Value-small.jpg?raw=true)
 
@@ -13,7 +13,7 @@ __A Value Type is:__
  - __Equal and Unique depending on ALL its attributes__
  - __Auto-validating__ (i.e. transactional constructor)
 
-As a consequence, __Value Types helps to reduce side-effects within our OO base code__.
+As a consequence, __Value Types helps us to reduce side-effects within our OO base code__.
 
 
 ## How "Value" can help us?

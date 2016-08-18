@@ -37,7 +37,7 @@ namespace Value.Tests
         {
             var firstElement = new object();
             var secondElement = new object();
-            
+
             var listA = new ListByValue<object>() { firstElement, secondElement };
             var listB = new ListByValue<object>() { firstElement, secondElement };
 
@@ -94,6 +94,17 @@ namespace Value.Tests
         }
 
         [Test]
+        public void Should_properly_expose_IEnumerable()
+        {
+            var list = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+
+            foreach (var card in list)
+            {
+                Check.That(card == Card.Parse("QC") || card == Card.Parse("TS")).IsTrue();
+            }
+        }
+
+        [Test]
         public void Should_properly_expose_Contains()
         {
             var list = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
@@ -115,7 +126,7 @@ namespace Value.Tests
         public void Should_raise_NotImplementedException_when_calling_IsReadOnly_property()
         {
             var list = new ListByValue<int>() { 0, 1, 2 };
-            
+
             Check.ThatCode(() => list.IsReadOnly).Throws<NotImplementedException>();
         }
     }

@@ -25,10 +25,7 @@ namespace Value.Tests.Samples
     public class Amount : ValueType<Amount>
     {
         private readonly decimal quantity;
-
         private readonly Currency currency;
-
-        private int? hashCode;
 
         public Amount(decimal quantity, Currency currency)
         {

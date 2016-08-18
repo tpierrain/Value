@@ -24,7 +24,6 @@ namespace Value.Tests.Samples
     public class ItemPrice : Amount
     {
         private readonly string itemName;
-        private int? hashCode;
 
         public ItemPrice(string itemName, decimal quantity, Currency currency) : base(quantity, currency)
         {

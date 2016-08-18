@@ -22,7 +22,7 @@ __A Value Type:__
  - is __auto-validating__ (via *transactional* constructors __with business validation inside__ and throwing exception if necessary)
 
 
-### Reverse the trend (Value Types vs. Entities)
+### Reverse the trend! (Value Types vs. Entities)
 
 An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity. Even if the choice you make will strongly depends on your business context (*there is no silver bullet*), here is some basic samples to better grasp the difference between *Value Types* and *Entities*:
  
@@ -40,10 +40,13 @@ This __will helps us to reduce side-effects within our OO base code__. A simple 
 Yes, because one of the problem we face when we code with Object Oriented (OO) languages like C# or java is the presence of __side-effects__. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) __makes our reasoning harder__. Doing Test Driven Development helps a lot, but is not enough to ease the reasoning about our code.
 
 Being inspired by functional programming (FP) languages, __DDD suggests us to make our OO design more FP oriented in order to reduce those painful side-effects__. They are many things we can do for it. E.g.: 
- - to use and combine __functions__ instead of methods that impact object states
+ - to use and combine __functions__ instead of methods (that impact object states)
  - to embrace __CQS pattern__ for *Entity* objects (i.e. a paradigm where read methods never change state and write methods never return data)
  - to implement *Closure of Operations* whenever it's possible (to reduce coupling with other types)
  - to use __*Value Types*__ by default and to keep *Entity* objects only when needed.
+
+
+### You are not alone
 
 Since there is no first-class citizen for immutability and *Value Types* in C#, the goal of this pico library is to help you easily implement Value Types without caring too much on the boiler-plate code. 
 

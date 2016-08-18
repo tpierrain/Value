@@ -18,18 +18,18 @@ __A Value Type is:__
 
 ### Reverse the trend (Value Types vs. Entities)
 
-Even if the category you pick will strongly depends on your business context, here is some basics sample to clarify between *Value Types* and *Entities*:
+Even if the category you pick will strongly depends on your business context, here is some basic samples to clarify between *Value Types* and *Entities*:
  
  - __*Value types*__: cards of a poker hand, a speed of 10 mph, a bank note of 10 euros (unless you are working for a Central Bank which need then to trace every bank notes --> Entity), a user address
 
  - __*Entities*__: a user account, a customer's basket with items, a customer, ...
 
 Our OO code bases are usually full of types with states and contain a very few Value Type instances.
-DDD advises us to reverse the trend by not having *Entities* created by default, and to increase our __usage of Value Types__. 
+DDD advises us to reverse the trend by not having *Entities* created by default, and to strongly increase our __usage of Value Types__. 
 
 This __will helps us to reduce side-effects within our OO base code__. A simple reflex, for great benefits.
 
-## Side effects, you said?
+### Side effects, you said?
 
 Yes, because one of the problem we face when we code with Object Oriented (OO) languages like C# or java is the presence of __side-effects__. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) __makes our reasoning harder__. Doing Test Driven Development helps a lot, but is not enough to ease the reasoning about our code.
 

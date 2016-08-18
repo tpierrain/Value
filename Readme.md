@@ -47,9 +47,7 @@ __Yeah, let's focus on our business value now!__
 
 ## What's inside the box?
 
-E.g.: 
-
- - __ValueType<T>__: making all your Value Types deriving from this base class will allow you to properly implement Equality (IEquatable) and Unicity (GetHashCode()) on ALL your fields _in 1 line of code_. Very Handy!
+ - __ValueType<T>__: making all your Value Types deriving from this base class will allow you to __properly implement Equality__ (IEquatable) __and Unicity__ (GetHashCode()) on ALL your fields __in 1 line of code__. Very Handy!
 ```c#
     // 1. You inherit from ValueType<T> like this:
 	public class Amount : ValueType<Amount>

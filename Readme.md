@@ -55,6 +55,9 @@ __Yeah, let's focus on our business value now!__
         private readonly decimal quantity;
         private readonly Currency currency;
 		
+		public decimal Quantity { get { return this.quantity; } }
+        public Currency Currency { get { return this.currency; } }
+
 		...
 
 		// 2. You (are then forced to) implement the abstract method returning the list of all your fields

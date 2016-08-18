@@ -13,17 +13,17 @@ __A Value Type is:__
  - __100% Ubiquitous Language__: Cure to primitive obsession, the usage of Value Types is an opportunity for us to embrace the language of our business within our code base
  - __function-oriented__ Our domain logic will be implemented by exposing, using and combining functions (following closure of operations whenever possible)
  - __providing Equality and Uniqueness based on ALL its attributes__
- - __Auto-validating__ (i.e. transactional constructors with business validation inside)
+ - __auto-validating__ (i.e. transactional constructors with business validation inside)
 
 As a consequence, __Value Types helps us to reduce side-effects within our OO base code__. A simple tool, for great benefits.
 
 ## Side effects, you said?
 
-Yes, one of the problem we face when we code with Object Oriented (OO) languages like C# or java is the presence of side-effects. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) makes our reasoning harder. Doing some TDD helps a lot but is not enough to ease the reasoning about our code. 
+Yes, one of the problem we face when we code with Object Oriented (OO) languages like C# or java is the presence of __side-effects__. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) __makes our reasoning harder__. Doing Test Driven Development helps a lot, but is not enough to ease the reasoning about our code.
 
-Being inspired by functional programming (FP) languages, __DDD__ suggests us to make our OO design more FP oriented in order to reduce those painful side-effects. They are many things we can do for it. E.g.: 
- - to use and combine functions instead of methods
- - to embrace CQS pattern (i.e. a paradigm where read methods never change state and write methods never return data)
+Being inspired by functional programming (FP) languages, __DDD suggests us to make our OO design more FP oriented in order to reduce those painful side-effects__. They are many things we can do for it. E.g.: 
+ - to use and combine __functions__ instead of methods
+ - to embrace __CQS pattern__ (i.e. a paradigm where read methods never change state and write methods never return data)
  - to implement *Closure of Operations* whenever it's possible (to reduce coupling with other types)
  - to use __*Value Types*__ by default and to keep *Entity* objects only when needed. An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity.
 
@@ -33,7 +33,7 @@ __Yeah, let's focus on our business value now!__
 
 --- 
 
-## How "Value" can help us?
+## What's inside the box?
 
 E.g.: 
 

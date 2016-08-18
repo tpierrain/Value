@@ -1,6 +1,6 @@
 # Value
 
-is a pico library (or code snippets shed) to help you to __easily implement Value Types__ in your C# projects without making errors or polluting your domain logic with boiler-plate code.
+is a pico library (or code snippets shed) to help you to __easily implement Value Types__ in your C# projects without making errors nor polluting your domain logic with boiler-plate code.
 
 ![Value](https://github.com/tpierrain/Value/blob/master/Value-small.jpg?raw=true)
 

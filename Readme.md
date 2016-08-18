@@ -9,11 +9,11 @@ __Domain Driven Design (DDD)__'s *Value Object* being an oxymoron (indeed, an ob
 
 __A Value Type is:__
  - __immutable__ (every field must be read-only after the Value Type instantiation; no 'setter' is allowed)
- - __rich with domain logic and behaviours__. The idea is to swallow (and encapsulate) most of our business complexity.
+ - __rich with domain logic and behaviours__. The idea is to swallow (and encapsulate) most of our business complexity within those classes
  - __100% Ubiquitous Language__: Cure to primitive obsession, the usage of Value Types is an opportunity for us to embrace the language of our business within our code base
- - __functions-based__ Our domain logic will be implemented by exposing, using and combining functions, following closure of operations whenever possible
- - __Equal and Unique depending on ALL its attributes__
- - __Auto-validating__ (i.e. transactional constructor)
+ - __function-orientedd__ Our domain logic will be implemented by exposing, using and combining functions, following closure of operations whenever possible
+ - __providing Equality and Uniqueness based on ALL its attributes__
+ - __Auto-validating__ (i.e. transactional constructors with business validation inside)
 
 As a consequence, __Value Types helps us to reduce side-effects within our OO base code__. A simple tool, for great benefits.
 

@@ -5,7 +5,7 @@ is a zero-dependancy pico library (or code snippets shed) to help you to __easil
 ![Value](https://github.com/tpierrain/Value/blob/master/Value-small.jpg?raw=true)
 
 ## Value Types?
-__Domain Driven Design (DDD)__'s *Value Object* being an oxymoron (indeed, an object has a changing state by nature), we now rather use the "*Value Type*" terminology. But the concept is the same as described within Eric Evan's Blue book.
+__Domain Driven Design (DDD)__'s *Value Object* being an oxymoron (indeed, an object has a changing state by nature), we now rather use the "*Value Type*" (instance) terminology. But the concept is the same as described within Eric Evan's Blue book.
 
 __A Value Type is:__
  - __immutable__ (every field must be read-only after the Value Type instantiation; no 'setter' is allowed)

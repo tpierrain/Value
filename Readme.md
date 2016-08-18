@@ -69,7 +69,7 @@ E.g.:
 
 ```
 
- - __ListByValue<T>__: a list supporting equality based on its content and not on its reference (i.e.: 2 different instances containing the same items will be equals). This collection is very useful for any ValueType that would like to aggregate a list...
+ - __ListByValue<T>__: a list supporting equality based on its content and not on its reference (i.e.: 2 different instances containing the same items will be equals). This collection is __very useful for any ValueType that would like to aggregate a list__
 
  - ...
 

@@ -16,7 +16,7 @@ __A Value Type is:__
  - __auto-validating__ (via *transactional* constructors __with business validation inside__)
 
 
-### Value Types vs. Entities
+### Reverse the trend (Value Types vs. Entities)
 
 Even if the category you pick will strongly depends on your business context, here is some basics sample to clarify between *Value Types* and *Entities*:
  
@@ -24,8 +24,10 @@ Even if the category you pick will strongly depends on your business context, he
 
  - __*Entities*__: a user account, a customer's basket with items, a customer, ...
 
+Our OO code bases are usually full of types with states and contain a very few Value Type instances.
+DDD advises us to reverse the trend by not having *Entities* created by default, and to increase our __usage of Value Types__. 
 
-Limit the number of Entities and increase our usage of __Value Types helps us to reduce side-effects within our OO base code__. A simple reflex, for great benefits.
+This __will helps us to reduce side-effects within our OO base code__. A simple reflex, for great benefits.
 
 ## Side effects, you said?
 

@@ -20,16 +20,28 @@ namespace Value.Tests
     using NUnit.Framework;
     using Value.Tests.Samples;
 
-    [TestFixture()]
+    [TestFixture]
     public class ListByValueTests
     {
         [Test]
-        public void Should_be_a_Value_Type()
+        public void Should_compare_by_value_with_ValueType_instances_in_it()
         {
             var listA = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var listB = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
 
             Check.That(listA).IsEqualTo(listB).And.ContainsExactly(Card.Parse("QC"), Card.Parse("TS"));
+        }
+
+        [Test]
+        public void Should_compare_by_value_with_classical_reference_instances_in_it()
+        {
+            var firstElement = new object();
+            var secondElement = new object();
+            
+            var listA = new ListByValue<object>() { firstElement, secondElement };
+            var listB = new ListByValue<object>() { firstElement, secondElement };
+
+            Check.That(listA).IsEqualTo(listB).And.ContainsExactly(firstElement, secondElement);
         }
 
         [Test]

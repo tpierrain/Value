@@ -22,10 +22,13 @@ namespace Value
     /// <summary>
     /// Support a by-Value Equality and Unicity.
     /// </summary>
+    /// <remarks>This latest implementation has been inspired from Scott Millett's book (Patterns, Principles, and Practices of Domain-Driven Design).</remarks>
     /// <typeparam name="T"></typeparam>
     public abstract class EquatableByValue<T> : IEquatable<T> where T : EquatableByValue<T>
     {
         private int? hashCode;
+
+        protected abstract IEnumerable<object> GetAllAttributesToBeUsedForEquality();
 
         public bool Equals(T other)
         {
@@ -35,13 +38,6 @@ namespace Value
             }
 
             return this.GetAllAttributesToBeUsedForEquality().SequenceEqual(other.GetAllAttributesToBeUsedForEquality());
-        }
-
-        protected abstract IEnumerable<object> GetAllAttributesToBeUsedForEquality();
-
-        protected virtual void ResetHashCode()
-        {
-            this.hashCode = null;
         }
 
         public override bool Equals(object obj)
@@ -59,6 +55,11 @@ namespace Value
             }
 
             return this.Equals(other);
+        }
+
+        protected virtual void ResetHashCode()
+        {
+            this.hashCode = null;
         }
 
         public override int GetHashCode()

@@ -93,7 +93,7 @@ namespace Value.Tests
             Check.That(list[1]).IsEqualTo(Card.Parse("TS"));
         }
 
-        //[Test]
+        [Test]
         public void Should_properly_expose_IEnumerable()
         {
             var list = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };

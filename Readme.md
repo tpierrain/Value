@@ -22,7 +22,7 @@ As a consequence, __Value Types helps us to reduce side-effects within our OO ba
 Yes, one of the problem we face when we code with Object Oriented (OO) languages like C# or java is the presence of __side-effects__. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) __makes our reasoning harder__. Doing Test Driven Development helps a lot, but is not enough to ease the reasoning about our code.
 
 Being inspired by functional programming (FP) languages, __DDD suggests us to make our OO design more FP oriented in order to reduce those painful side-effects__. They are many things we can do for it. E.g.: 
- - to use and combine __functions__ instead of methods
+ - to use and combine __functions__ instead of methods that impact object states
  - to embrace __CQS pattern__ (i.e. a paradigm where read methods never change state and write methods never return data)
  - to implement *Closure of Operations* whenever it's possible (to reduce coupling with other types)
  - to use __*Value Types*__ by default and to keep *Entity* objects only when needed. An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity.

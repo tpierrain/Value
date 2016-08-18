@@ -24,6 +24,46 @@ namespace Value.Tests
     public class ValueTypeTests
     {
         [Test]
+        public void Should_find_equals_2_different_instances_of_ValueType_with_same_values()
+        {
+            var amount = new Amount(new decimal(50.3), Currency.Dollar);
+            var sameAmountValue = new Amount(new decimal(50.3), Currency.Dollar);
+
+            Check.That(amount).IsEqualTo(sameAmountValue);
+        }
+
+        [Test]
+        public void Should_distinguish_a_derived_instance_from_a_base_value_type_with_same_sub_common_values()
+        {
+            var amount = new Amount(new decimal(50.3), Currency.Dollar);
+            var itemPrice = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
+
+            Check.That(amount.Equals((object)itemPrice)).IsFalse();
+        }
+
+        [Test]
+        public void Should_retrieve_properly_implemented_derived_value_type_with_same_values_in_a_set()
+        {
+            var itemPrice = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
+            var itemPriceWithSameValues = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
+
+            var set = new HashSet<ItemPrice> { itemPrice };
+
+            Check.That(set).ContainsExactly(itemPriceWithSameValues);
+        }
+
+        [Test]
+        public void Should_retrieve_value_type_with_same_values_in_a_set()
+        {
+            var amount = new Amount(new decimal(50.3), Currency.Dollar);
+            var amountWithSameValues = new Amount(new decimal(50.3), Currency.Dollar);
+
+            var set = new HashSet<Amount> { amount };
+
+            Check.That(set).ContainsExactly(amountWithSameValues);
+        }
+
+        [Test]
         public void Should_distinguish_a_value_type_from_null()
         {
             var amount = new Amount(new decimal(50.3), Currency.Dollar);
@@ -72,46 +112,6 @@ namespace Value.Tests
             var differentItemPriceValue = new ItemPriceWithBadImplementationForEqualityAndUnicity("not a movie", new decimal(50.3), Currency.Dollar);
 
             Check.That(itemPrice).IsEqualTo(differentItemPriceValue); // because bad implementation of equality
-        }
-
-        [Test]
-        public void Should_find_equals_2_different_instances_of_ValueType_with_same_values()
-        {
-            var amount = new Amount(new decimal(50.3), Currency.Dollar);
-            var sameAmountValue = new Amount(new decimal(50.3), Currency.Dollar);
-
-            Check.That(amount).IsEqualTo(sameAmountValue);
-        }
-
-        [Test]
-        public void Should_distinguish_a_derived_instance_from_a_base_value_type_with_same_sub_common_values()
-        {
-            var amount = new Amount(new decimal(50.3), Currency.Dollar);
-            var itemPrice = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
-
-            Check.That(amount.Equals((object)itemPrice)).IsFalse();
-        }
-
-        [Test]
-        public void Should_retrieve_properly_implemented_derived_value_type_with_same_values_in_a_set()
-        {
-            var itemPrice = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
-            var itemPriceWithSameValues = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
-
-            var set = new HashSet<ItemPrice> { itemPrice };
-
-            Check.That(set).ContainsExactly(itemPriceWithSameValues);
-        }
-
-        [Test]
-        public void Should_retrieve_value_type_with_same_values_in_a_set()
-        {
-            var amount = new Amount(new decimal(50.3), Currency.Dollar);
-            var amountWithSameValues = new Amount(new decimal(50.3), Currency.Dollar);
-
-            var set = new HashSet<Amount> { amount };
-
-            Check.That(set).ContainsExactly(amountWithSameValues);
         }
 
         [Test]

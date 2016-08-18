@@ -1,24 +1,24 @@
 # Value
 
-is a pico library (or code snippets shed) to help you to __easily implement Value Types__ in your C# projects without polluting your domain logic with boiler-plate code.
+is a pico library (or code snippets shed) to help you to __easily implement Value Types__ in your C# projects without making errors or polluting your domain logic with boiler-plate code.
 
 ![Value](https://github.com/tpierrain/Value/blob/master/Value-small.jpg?raw=true)
 
 ## Value Types?
 __Domain Driven Design (DDD)__'s *Value Object* being an oxymoron (indeed, an object has a changing state by nature), we now rather use the "*Value Type*" (instance) terminology. But the concept is the same as described within Eric Evan's Blue book.
 
-__A Value Type is:__
- - __immutable__ (every field must be read-only after the Value Type instantiation; no 'setter' is allowed)
- - __rich with domain logic and behaviours__. The idea is to swallow (and encapsulate) most of our business complexity within those classes
- - __100% Ubiquitous Language__: Cure to primitive obsession, the usage of Value Types is an opportunity for us to embrace the language of our business within our code base
- - __function-oriented__ Our domain logic will be implemented by exposing, using and combining functions (usually returning new instance(s) of Value Type; following 'closure of operations' if the type returned is of the same type)
- - __providing Equality and Uniqueness based on ALL its attributes__ (and "all" is *a must* here)
- - __auto-validating__ (via *transactional* constructors __with business validation inside__)
+__A Value Type:__
+ - is __immutable__ (every field must be read-only after the Value Type instantiation; no 'setter' is allowed)
+ - is __rich with domain logic and behaviours__. The idea is to swallow (and encapsulate) most of our business complexity within those classes
+ - embraces the __Ubiquitous Language__ of our business context: cure to primitive obsession, the usage of Value Types is an opportunity for us to embrace the language of our business within our code base
+ - __exposes, uses and combines functions__ to provide business (domain) value. Functions usually return new instance(s) of Value Types ('*closure of operations*' describing an operation whose return type is the same as the type of its argument(s))
+ - __considers ALL its attributes for Equality and Uniqueness__ (and "all" *is-a-must* here)
+ - is __auto-validating__ (via *transactional* constructors __with business validation inside__)
 
 
 ### Reverse the trend (Value Types vs. Entities)
 
-Even if the category you pick will strongly depends on your business context, here is some basic samples to clarify between *Value Types* and *Entities*:
+An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity. Even if the category you pick will strongly depends on your business context (*there is no silver bullet*), here is some basic samples to better grasp the difference between *Value Types* and *Entities*:
  
  - __*Value types*__: cards of a poker hand, a speed of 10 mph, a bank note of 10 euros (unless you are working for a Central Bank which need then to trace every bank notes --> Entity), a user address
 
@@ -37,7 +37,7 @@ Being inspired by functional programming (FP) languages, __DDD suggests us to ma
  - to use and combine __functions__ instead of methods that impact object states
  - to embrace __CQS pattern__ for *Entity* objects (i.e. a paradigm where read methods never change state and write methods never return data)
  - to implement *Closure of Operations* whenever it's possible (to reduce coupling with other types)
- - to use __*Value Types*__ by default and to keep *Entity* objects only when needed. An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity.
+ - to use __*Value Types*__ by default and to keep *Entity* objects only when needed.
 
 Since there is no first-class citizen for immutability and *Value Types* in C#, the goal of this pico library is to help you easily implement Value Types without caring too much on the boiler-plate code. 
 

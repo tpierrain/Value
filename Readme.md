@@ -12,6 +12,11 @@ __A Value Type:__
  - is __rich with domain logic and behaviours__. The idea is to swallow (and encapsulate) most of our business complexity within those classes
  - embraces the __Ubiquitous Language__ of our business context: cure to primitive obsession, the usage of Value Types is an opportunity for us to embrace the language of our business within our code base
  - __exposes, uses and combines functions__ to provide business (domain) value. Functions usually return new instance(s) of Value Types ('*closure of operations*' describing an operation whose return type is the same as the type of its argument(s))
+
+```c#
+    public Amount Add(Amount otherAmount) // this Add function does not change any Amount instance, it creates a new one as a result
+```
+
  - __considers ALL its attributes for Equality and Uniqueness__ (and "all" *is-a-must* here)
  - is __auto-validating__ (via *transactional* constructors __with business validation inside__)
 

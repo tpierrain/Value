@@ -18,7 +18,7 @@ __A Value Type:__
 ```
 
  - __considers ALL its attributes for Equality and Uniqueness__ (and "all" *is-a-must* here)
- - is __auto-validating__ (via *transactional* constructors __with business validation inside__)
+ - is __auto-validating__ (via *transactional* constructors __with business validation inside__ and throwing exception if necessary)
 
 
 ### Reverse the trend (Value Types vs. Entities)

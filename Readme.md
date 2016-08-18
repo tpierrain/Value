@@ -14,7 +14,8 @@ __A Value Type:__
  - __exposes, uses and combines functions__ to provide business (domain) value. Functions usually return new instance(s) of Value Types ('*closure of operations*' describing an operation whose return type is the same as the type of its argument(s))
 
 ```c#
-    public Amount Add(Amount otherAmount) // this Add function does not change any Amount instance, it creates a new one as a result
+    // e.g.: the following Add function does not change any existing Amount instance, it just returns a new one
+    public Amount Add(Amount otherAmount) 
 ```
 
  - __considers ALL its attributes for Equality and Uniqueness__ (and "all" *is-a-must* here)
@@ -23,7 +24,7 @@ __A Value Type:__
 
 ### Reverse the trend (Value Types vs. Entities)
 
-An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity. Even if the category you pick will strongly depends on your business context (*there is no silver bullet*), here is some basic samples to better grasp the difference between *Value Types* and *Entities*:
+An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity. Even if the choice you make will strongly depends on your business context (*there is no silver bullet*), here is some basic samples to better grasp the difference between *Value Types* and *Entities*:
  
  - __*Value types*__: cards of a poker hand, a speed of 10 mph, a bank note of 10 euros (unless you are working for a Central Bank which need then to trace every bank notes --> Entity), a user address
 

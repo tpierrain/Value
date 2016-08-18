@@ -25,11 +25,11 @@ Even if the category you pick will strongly depends on your business context, he
  - __*Entities*__: a user account, a customer's basket with items, a customer, ...
 
 
-__Value Types helps us to reduce side-effects within our OO base code__. A simple tool, for great benefits.
+Limit the number of Entities and increase our usage of __Value Types helps us to reduce side-effects within our OO base code__. A simple reflex, for great benefits.
 
 ## Side effects, you said?
 
-Yes, one of the problem we face when we code with Object Oriented (OO) languages like C# or java is the presence of __side-effects__. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) __makes our reasoning harder__. Doing Test Driven Development helps a lot, but is not enough to ease the reasoning about our code.
+Yes, because one of the problem we face when we code with Object Oriented (OO) languages like C# or java is the presence of __side-effects__. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) __makes our reasoning harder__. Doing Test Driven Development helps a lot, but is not enough to ease the reasoning about our code.
 
 Being inspired by functional programming (FP) languages, __DDD suggests us to make our OO design more FP oriented in order to reduce those painful side-effects__. They are many things we can do for it. E.g.: 
  - to use and combine __functions__ instead of methods that impact object states
@@ -57,10 +57,10 @@ E.g.:
 		
 		...
 
-		// 2. You (are forced to) implement the abstract method returning the list of all your fields
+		// 2. You (are then forced to) implement the abstract method returning the list of all your fields
 		protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return new List<object>() { this.quantity, this.currency };
+            return new List<object>() { this.quantity, this.currency }; // The line of code I was talking about
         }
 
 		// And that's all folks!

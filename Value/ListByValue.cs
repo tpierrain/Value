@@ -27,13 +27,13 @@ namespace Value
     /// <typeparam name="T">Type of the listed items.</typeparam>
     public class ListByValue<T> : EquatableByValue<ListByValue<T>>, IList<T>
     {
-        private readonly List<T> itemsList;
+        private readonly IList<T> itemsList;
 
         public ListByValue() : this(new List<T>())
         {
         }
 
-        private ListByValue(List<T> itemsList)
+        public ListByValue(IList<T> itemsList)
         {
             this.itemsList = itemsList;
         }

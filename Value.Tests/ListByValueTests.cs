@@ -13,6 +13,8 @@
 //     limitations under the License.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+using System.Collections.Generic;
+
 namespace Value.Tests
 {
     using System;
@@ -75,6 +77,14 @@ namespace Value.Tests
             list.RemoveAt(0);
             var afterRemoveAtHash = list.GetHashCode();
             Check.That(afterRemoveAtHash).IsNotEqualTo(afterIndexerHash);
+        }
+
+        [Test]
+        public void Should_accept_list_as_constructor_argument()
+        {
+            var list = new List<int>() {1, 2, 3};
+
+            Check.That(new ListByValue<int>(list)).ContainsExactly(1, 2, 3);
         }
 
         [Test]

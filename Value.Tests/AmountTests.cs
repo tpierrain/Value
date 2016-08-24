@@ -18,7 +18,7 @@ namespace Value.Tests
     using System;
     using NFluent;
     using NUnit.Framework;
-    using Value.Tests.Samples;
+    using Samples;
 
     [TestFixture]
     internal class AmountTests

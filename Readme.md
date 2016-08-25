@@ -81,7 +81,7 @@ __Yeah, let's focus on our business value now!__
 
 ```
 
- - __ListByValue<T>__: A list with equality based on its content and not on the list's reference (i.e.: 2 different instances containing the same items in the same order will be equals). This collection is __very useful for any ValueType that aggregates a list__
+ - __ListByValue<T>__: A list with equality based on its content and not on the list's reference (i.e.: 2 different instances containing the same items in the same order will be equals). This collection decorator is __very useful for any ValueType that aggregates a list__
 
  ```c#
       // when one of your ValueType aggregates a IList like this
@@ -96,7 +96,7 @@ __Yeah, let's focus on our business value now!__
       }
 ```
 
- - __HashSetByValue<T>__: A Set with equality based on its content and not on the Set's reference (i.e.: 2 different instances containing the same items will be equals whatever their storage order). This collection is __very useful for any ValueType that aggregates a set__
+ - __HashSetByValue<T>__: A Set with equality based on its content and not on the Set's reference (i.e.: 2 different instances containing the same items will be equals whatever their storage order). This collection decorator is __very useful for any ValueType that aggregates a set__
 
 ```c#
       // when one of your ValueType aggregates a Set like this
@@ -110,8 +110,7 @@ __Yeah, let's focus on our business value now!__
           return new List<object>() { new HashSetByValue<Card>(this.cards) };
       }
 ```
- 
- - ...
+
 
  
  

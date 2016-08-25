@@ -21,95 +21,95 @@ namespace Value
 
     /// <summary>
     ///     A list with equality based on its content and not on the list's reference 
-    ///     (i.e.: 2 different instances containing the same items will be equals).
+    ///     (i.e.: 2 different instances containing the same items in the same order will be equals).
     /// </summary>
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="T">Type of the listed items.</typeparam>
     public class ListByValue<T> : EquatableByValue<ListByValue<T>>, IList<T>
     {
-        private readonly IList<T> itemsList;
+        private readonly IList<T> list;
 
         public ListByValue() : this(new List<T>())
         {
         }
 
-        public ListByValue(IList<T> itemsList)
+        public ListByValue(IList<T> list)
         {
-            this.itemsList = itemsList;
+            this.list = list;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return this.itemsList.GetEnumerator();
+            return this.list.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable)this.itemsList).GetEnumerator();
+            return ((IEnumerable)this.list).GetEnumerator();
         }
 
         public void Add(T item)
         {
             base.ResetHashCode();
-            this.itemsList.Add(item);
+            this.list.Add(item);
         }
 
         public void Clear()
         {
             base.ResetHashCode();
-            this.itemsList.Clear();
+            this.list.Clear();
         }
 
         public bool Contains(T item)
         {
-            return this.itemsList.Contains(item);
+            return this.list.Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            this.itemsList.CopyTo(array, arrayIndex);
+            this.list.CopyTo(array, arrayIndex);
         }
 
         public bool Remove(T item)
         {
             base.ResetHashCode();
-            return this.itemsList.Remove(item);
+            return this.list.Remove(item);
         }
 
-        public int Count { get { return this.itemsList.Count; } }
+        public int Count => this.list.Count;
 
-        public bool IsReadOnly { get { throw new NotImplementedException("Could not expose private IsReadOnly property from aggregated itemsList."); } }
+        public bool IsReadOnly => ((ICollection<T>)this.list).IsReadOnly;
 
         public int IndexOf(T item)
         {
-            return this.itemsList.IndexOf(item);
+            return this.list.IndexOf(item);
         }
 
         public void Insert(int index, T item)
         {
             base.ResetHashCode();
-            this.itemsList.Insert(index, item);
+            this.list.Insert(index, item);
         }
 
         public void RemoveAt(int index)
         {
             base.ResetHashCode();
-            this.itemsList.RemoveAt(index);
+            this.list.RemoveAt(index);
         }
 
         public T this[int index]
         {
-            get { return this.itemsList[index]; }
+            get { return this.list[index]; }
             set
             {
                 base.ResetHashCode();
-                this.itemsList[index] = value;
+                this.list[index] = value;
             }
         }
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return (IEnumerable<object>)this.itemsList;
+            return (IEnumerable<object>)this.list;
         }
     }
 }

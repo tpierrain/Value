@@ -39,6 +39,11 @@ namespace Value.Tests.Samples
             this.Suit = suit;
         }
 
+        public override string ToString()
+        {
+            return $"{this.CardDescription}";
+        }
+
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
             return new List<object>() { this.Value, this.CardDescription, this.DisplayName, this.Suit };

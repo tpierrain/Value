@@ -3,6 +3,12 @@ namespace Value
     using System.Collections;
     using System.Collections.Generic;
 
+    /// <summary>
+    ///     An Set with equality based on its content and not on the Set's reference 
+    ///     (i.e.: 2 different instances containing the same items will be equals whatever their order).
+    /// </summary>
+    /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
+    /// <typeparam name="T">Type of the listed items.</typeparam>
     public class HashSetByValue<T> : ISet<T>
     {
         private readonly ISet<T> hashSet;
@@ -27,6 +33,11 @@ namespace Value
             }
 
             return this.hashSet.SetEquals(other);
+        }
+
+        protected virtual void ResetHashCode()
+        {
+            this.hashCode = null;
         }
 
         public override int GetHashCode()
@@ -60,11 +71,13 @@ namespace Value
 
         public void Add(T item)
         {
+            this.ResetHashCode();
             this.hashSet.Add(item);
         }
 
         public void Clear()
         {
+            this.ResetHashCode();
             this.hashSet.Clear();
         }
 
@@ -80,6 +93,7 @@ namespace Value
 
         public void ExceptWith(IEnumerable<T> other)
         {
+            this.ResetHashCode();
             this.hashSet.ExceptWith(other);
         }
 
@@ -90,6 +104,7 @@ namespace Value
 
         public void IntersectWith(IEnumerable<T> other)
         {
+            this.ResetHashCode();
             this.hashSet.IntersectWith(other);
         }
 
@@ -120,6 +135,7 @@ namespace Value
 
         public bool Remove(T item)
         {
+            this.ResetHashCode();
             return this.hashSet.Remove(item);
         }
 
@@ -130,16 +146,19 @@ namespace Value
 
         public void SymmetricExceptWith(IEnumerable<T> other)
         {
+            this.ResetHashCode();
             this.hashSet.SymmetricExceptWith(other);
         }
 
         public void UnionWith(IEnumerable<T> other)
         {
+            this.ResetHashCode();
             this.hashSet.UnionWith(other);
         }
 
         bool ISet<T>.Add(T item)
         {
+            this.ResetHashCode();
             return this.hashSet.Add(item);
         }
 

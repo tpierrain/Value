@@ -13,20 +13,19 @@
 //     limitations under the License.b 
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System.Collections.Generic;
-
 namespace Value.Tests
 {
     using System;
+    using System.Collections.Generic;
     using NFluent;
     using NUnit.Framework;
-    using Value.Tests.Samples;
+    using Samples;
 
     [TestFixture]
     public class ListByValueTests
     {
         [Test]
-        public void Should_compare_by_value_with_ValueType_instances_in_it()
+        public void Should_consider_Equals_two_instances_with_same_ValueType_elements_in_same_order()
         {
             var listA = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var listB = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
@@ -35,7 +34,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_compare_by_value_with_classical_reference_instances_in_it()
+        public void Should_consider_Equals_two_instances_with_same_reference_types_elements_in_same_order()
         {
             var firstElement = new object();
             var secondElement = new object();
@@ -44,6 +43,18 @@ namespace Value.Tests
             var listB = new ListByValue<object>() { firstElement, secondElement };
 
             Check.That(listA).IsEqualTo(listB).And.ContainsExactly(firstElement, secondElement);
+        }
+
+        [Test]
+        public void Should_consider_Not_Equals_two_instances_with_same_elements_in_different_order()
+        {
+            var firstElement = new object();
+            var secondElement = new object();
+
+            var listA = new ListByValue<object>() { firstElement, secondElement };
+            var listB = new ListByValue<object>() { secondElement, firstElement };
+
+            Check.That(listB).IsNotEqualTo(listA).And.ContainsExactly(secondElement, firstElement);
         }
 
         [Test]
@@ -133,11 +144,13 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_raise_NotImplementedException_when_calling_IsReadOnly_property()
+        public void Should_properly_expose_IsReadOnly()
         {
-            var list = new ListByValue<int>() { 0, 1, 2 };
+            var originalList = new List<int>() { 0, 1, 2 };
+            var listByValue = new ListByValue<int>(originalList);
 
-            Check.ThatCode(() => list.IsReadOnly).Throws<NotImplementedException>();
+            ICollection<int> original = originalList;
+            Check.That(listByValue.IsReadOnly).IsEqualTo(original.IsReadOnly);
         }
     }
 }

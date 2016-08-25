@@ -91,7 +91,7 @@ __Yeah, let's focus on our business value now!__
 
       protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
       {
-          // here, you can use ListByValue decorator to ensure a "ByValue" equality
+          // here, you can use the ListByValue decorator to ensure a "ByValue" equality of your Type.
           return new List<object>() { new ListByValue<Card>(this.cards) };
       }
 ```
@@ -106,7 +106,7 @@ __Yeah, let's focus on our business value now!__
      
       protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
       {
-          // here, you can use HashSetByValue decorator to ensure a "ByValue" equality
+          // here, you can use the SetByValue decorator to ensure the "ByValue" equality of your Type.
           return new List<object>() { new SetByValue<Card>(this.cards) };
       }
 ```

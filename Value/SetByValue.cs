@@ -95,17 +95,18 @@ namespace Value
 
                 // Two instances with same elements added in different order must return the same hashcode
                 // Let's compute and sort hashcodes of all elements (always in the same order)
-                var sortedHashs = new SortedSet<int>();
+                var sortedHashCodes = new SortedSet<int>();
                 foreach (var element in this.hashSet)
                 {
-                    sortedHashs.Add(element.GetHashCode());
+                    sortedHashCodes.Add(element.GetHashCode());
                 }
 
-                foreach (var element in sortedHashs)
+                foreach (var elementHashCode in sortedHashCodes)
                 {
-                    code = (code * 397) ^ element.GetHashCode();
+                    code = (code * 397) ^ elementHashCode;
                 }
 
+                // Cache the result in a field
                 this.hashCode = code;
             }
 

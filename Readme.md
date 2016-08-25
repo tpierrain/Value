@@ -91,7 +91,7 @@ __Yeah, let's focus on our business value now!__
 
       protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
       {
-          // you can use ListByValue decorator here to ensure a "ByValue" equality
+          // here, you can use ListByValue decorator to ensure a "ByValue" equality
           return new List<object>() { new ListByValue<Card>(this.cards) };
       }
 ```
@@ -99,17 +99,16 @@ __Yeah, let's focus on our business value now!__
  - __HashSetByValue<T>__: A Set with equality based on its content and not on the Set's reference (i.e.: 2 different instances containing the same items will be equals whatever their storage order). This collection is __very useful for any ValueType that aggregates a set__
 
 ```c#
-      
       // when one of your ValueType aggregates a Set like this
       private readonly ISet<Card> cards = new HashSet<Card>() { Card.Parse("QS"), Card.Parse("AD")};
-
-     //...
-
-     protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
-     {
-         // you can use HashSetByValue decorator here to ensure a "ByValue" equality
-         return new List<object>() { new HashSetByValue<Card>(this.cards) };
-     }
+      
+      //...
+     
+      protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
+      {
+          // here, you can use HashSetByValue decorator to ensure a "ByValue" equality
+          return new List<object>() { new HashSetByValue<Card>(this.cards) };
+      }
 ```
  
  - ...

@@ -1,5 +1,5 @@
 // // --------------------------------------------------------------------------------------------------------------------
-// // <copyright file="HashSetByValue.cs">
+// // <copyright file="SetByValue.cs">
 // //     Copyright 2016
 // //           Thomas PIERRAIN (@tpierrain)    
 // //     Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,18 +24,18 @@ namespace Value
     /// </summary>
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="T">Type of the listed items.</typeparam>
-    public class HashSetByValue<T> : ISet<T>
+    public class SetByValue<T> : ISet<T>
     {
         private readonly ISet<T> hashSet;
 
         private int? hashCode;
 
-        public HashSetByValue(ISet<T> hashSet)
+        public SetByValue(ISet<T> hashSet)
         {
             this.hashSet = hashSet;
         }
 
-        public HashSetByValue() : this(new HashSet<T>())
+        public SetByValue() : this(new HashSet<T>())
         {
         }
 
@@ -67,7 +67,7 @@ namespace Value
 
         public override bool Equals(object obj)
         {
-            var other = obj as HashSetByValue<T>;
+            var other = obj as SetByValue<T>;
             if (other == null)
             {
                 return false;

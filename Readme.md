@@ -97,8 +97,9 @@ __Yeah, let's focus on our business value now!__
 ```
 
  - __HashSetByValue<T>__: A Set with equality based on its content and not on the Set's reference (i.e.: 2 different instances containing the same items will be equals whatever their storage order). This collection is __very useful for any ValueType that aggregates a set__
- 
+
 ```c#
+      
       // when one of your ValueType aggregates a Set like this
       private readonly ISet<Card> cards = new HashSet<Card>() { Card.Parse("QS"), Card.Parse("AD")};
 

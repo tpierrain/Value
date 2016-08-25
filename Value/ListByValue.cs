@@ -1,21 +1,20 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ListByValue.cs">
-//     Copyright 2016
-//           Thomas PIERRAIN (@tpierrain)    
-//     Licensed under the Apache License, Version 2.0 (the "License");
-//     you may not use this file except in compliance with the License.
-//     You may obtain a copy of the License at
-//         http://www.apache.org/licenses/LICENSE-2.0
-//     Unless required by applicable law or agreed to in writing, software
-//     distributed under the License is distributed on an "AS IS" BASIS,
-//     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//     See the License for the specific language governing permissions and
-//     limitations under the License.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+// // --------------------------------------------------------------------------------------------------------------------
+// // <copyright file="ListByValue.cs">
+// //     Copyright 2016
+// //           Thomas PIERRAIN (@tpierrain)    
+// //     Licensed under the Apache License, Version 2.0 (the "License");
+// //     you may not use this file except in compliance with the License.
+// //     You may obtain a copy of the License at
+// //         http://www.apache.org/licenses/LICENSE-2.0
+// //     Unless required by applicable law or agreed to in writing, software
+// //     distributed under the License is distributed on an "AS IS" BASIS,
+// //     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// //     See the License for the specific language governing permissions and
+// //     limitations under the License.b 
+// // </copyright>
+// // --------------------------------------------------------------------------------------------------------------------
 namespace Value
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -38,25 +37,29 @@ namespace Value
             this.list = list;
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return this.list.GetEnumerator();
-        }
+        public int Count => this.list.Count;
 
-        IEnumerator IEnumerable.GetEnumerator()
+        public bool IsReadOnly => ((ICollection<T>)this.list).IsReadOnly;
+
+        public T this[int index]
         {
-            return ((IEnumerable)this.list).GetEnumerator();
+            get { return this.list[index]; }
+            set
+            {
+                this.ResetHashCode();
+                this.list[index] = value;
+            }
         }
 
         public void Add(T item)
         {
-            base.ResetHashCode();
+            this.ResetHashCode();
             this.list.Add(item);
         }
 
         public void Clear()
         {
-            base.ResetHashCode();
+            this.ResetHashCode();
             this.list.Clear();
         }
 
@@ -70,15 +73,10 @@ namespace Value
             this.list.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(T item)
+        public IEnumerator<T> GetEnumerator()
         {
-            base.ResetHashCode();
-            return this.list.Remove(item);
+            return this.list.GetEnumerator();
         }
-
-        public int Count => this.list.Count;
-
-        public bool IsReadOnly => ((ICollection<T>)this.list).IsReadOnly;
 
         public int IndexOf(T item)
         {
@@ -87,24 +85,25 @@ namespace Value
 
         public void Insert(int index, T item)
         {
-            base.ResetHashCode();
+            this.ResetHashCode();
             this.list.Insert(index, item);
+        }
+
+        public bool Remove(T item)
+        {
+            this.ResetHashCode();
+            return this.list.Remove(item);
         }
 
         public void RemoveAt(int index)
         {
-            base.ResetHashCode();
+            this.ResetHashCode();
             this.list.RemoveAt(index);
         }
 
-        public T this[int index]
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            get { return this.list[index]; }
-            set
-            {
-                base.ResetHashCode();
-                this.list[index] = value;
-            }
+            return ((IEnumerable)this.list).GetEnumerator();
         }
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()

@@ -1,3 +1,18 @@
+// // --------------------------------------------------------------------------------------------------------------------
+// // <copyright file="HashSetByValue.cs">
+// //     Copyright 2016
+// //           Thomas PIERRAIN (@tpierrain)    
+// //     Licensed under the Apache License, Version 2.0 (the "License");
+// //     you may not use this file except in compliance with the License.
+// //     You may obtain a copy of the License at
+// //         http://www.apache.org/licenses/LICENSE-2.0
+// //     Unless required by applicable law or agreed to in writing, software
+// //     distributed under the License is distributed on an "AS IS" BASIS,
+// //     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// //     See the License for the specific language governing permissions and
+// //     limitations under the License.b 
+// // </copyright>
+// // --------------------------------------------------------------------------------------------------------------------
 namespace Value
 {
     using System.Collections;
@@ -5,7 +20,7 @@ namespace Value
 
     /// <summary>
     ///     An Set with equality based on its content and not on the Set's reference 
-    ///     (i.e.: 2 different instances containing the same items will be equals whatever their order).
+    ///     (i.e.: 2 different instances containing the same items will be equals whatever their storage order).
     /// </summary>
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="T">Type of the listed items.</typeparam>
@@ -22,47 +37,6 @@ namespace Value
 
         public HashSetByValue() : this(new HashSet<T>())
         {
-        }
-
-        public override bool Equals(object obj)
-        {
-            var other = obj as HashSetByValue<T>;
-            if (other == null)
-            {
-                return false;
-            }
-
-            return this.hashSet.SetEquals(other);
-        }
-
-        protected virtual void ResetHashCode()
-        {
-            this.hashCode = null;
-        }
-
-        public override int GetHashCode()
-        {
-            if (this.hashCode == null)
-            {
-                int code = 0;
-
-                // Two instances with same elements added in different order must return the same hashcode
-                // Let's compute and sort hashcodes of all elements (always in the same order)
-                var sortedHashs = new SortedSet<int>();
-                foreach (var element in this.hashSet)
-                {
-                    sortedHashs.Add(element.GetHashCode());
-                }
-
-                foreach (var element in sortedHashs)
-                {
-                    code = (code * 397) ^ element.GetHashCode();
-                }
-
-                this.hashCode = code;
-            }
-
-            return this.hashCode.Value;
         }
 
         public int Count => this.hashSet.Count;
@@ -91,6 +65,17 @@ namespace Value
             this.hashSet.CopyTo(array, arrayIndex);
         }
 
+        public override bool Equals(object obj)
+        {
+            var other = obj as HashSetByValue<T>;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.hashSet.SetEquals(other);
+        }
+
         public void ExceptWith(IEnumerable<T> other)
         {
             this.ResetHashCode();
@@ -100,6 +85,31 @@ namespace Value
         public IEnumerator<T> GetEnumerator()
         {
             return this.hashSet.GetEnumerator();
+        }
+
+        public override int GetHashCode()
+        {
+            if (this.hashCode == null)
+            {
+                int code = 0;
+
+                // Two instances with same elements added in different order must return the same hashcode
+                // Let's compute and sort hashcodes of all elements (always in the same order)
+                var sortedHashs = new SortedSet<int>();
+                foreach (var element in this.hashSet)
+                {
+                    sortedHashs.Add(element.GetHashCode());
+                }
+
+                foreach (var element in sortedHashs)
+                {
+                    code = (code * 397) ^ element.GetHashCode();
+                }
+
+                this.hashCode = code;
+            }
+
+            return this.hashCode.Value;
         }
 
         public void IntersectWith(IEnumerable<T> other)
@@ -165,6 +175,11 @@ namespace Value
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)this.hashSet).GetEnumerator();
+        }
+
+        protected virtual void ResetHashCode()
+        {
+            this.hashCode = null;
         }
     }
 }

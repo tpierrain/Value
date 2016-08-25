@@ -1,18 +1,18 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValueTypeTests.cs">
-//     Copyright 2016
-//           Thomas PIERRAIN (@tpierrain)    
-//     Licensed under the Apache License, Version 2.0 (the "License");
-//     you may not use this file except in compliance with the License.
-//     You may obtain a copy of the License at
-//         http://www.apache.org/licenses/LICENSE-2.0
-//     Unless required by applicable law or agreed to in writing, software
-//     distributed under the License is distributed on an "AS IS" BASIS,
-//     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//     See the License for the specific language governing permissions and
-//     limitations under the License.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+﻿// // --------------------------------------------------------------------------------------------------------------------
+// // <copyright file="ValueTypeTests.cs">
+// //     Copyright 2016
+// //           Thomas PIERRAIN (@tpierrain)    
+// //     Licensed under the Apache License, Version 2.0 (the "License");
+// //     you may not use this file except in compliance with the License.
+// //     You may obtain a copy of the License at
+// //         http://www.apache.org/licenses/LICENSE-2.0
+// //     Unless required by applicable law or agreed to in writing, software
+// //     distributed under the License is distributed on an "AS IS" BASIS,
+// //     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// //     See the License for the specific language governing permissions and
+// //     limitations under the License.b 
+// // </copyright>
+// // --------------------------------------------------------------------------------------------------------------------
 namespace Value.Tests
 {
     using System.Collections.Generic;
@@ -24,43 +24,12 @@ namespace Value.Tests
     public class ValueTypeTests
     {
         [Test]
-        public void Should_find_equals_2_different_instances_of_ValueType_with_same_values()
-        {
-            var amount = new Amount(new decimal(50.3), Currency.Dollar);
-            var sameAmountValue = new Amount(new decimal(50.3), Currency.Dollar);
-
-            Check.That(amount).IsEqualTo(sameAmountValue);
-        }
-
-        [Test]
         public void Should_distinguish_a_derived_instance_from_a_base_value_type_with_same_sub_common_values()
         {
             var amount = new Amount(new decimal(50.3), Currency.Dollar);
             var itemPrice = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
 
             Check.That(amount.Equals((object)itemPrice)).IsFalse();
-        }
-
-        [Test]
-        public void Should_retrieve_properly_implemented_derived_value_type_with_same_values_in_a_set()
-        {
-            var itemPrice = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
-            var itemPriceWithSameValues = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
-
-            var set = new HashSet<ItemPrice> { itemPrice };
-
-            Check.That(set).ContainsExactly(itemPriceWithSameValues);
-        }
-
-        [Test]
-        public void Should_retrieve_value_type_with_same_values_in_a_set()
-        {
-            var amount = new Amount(new decimal(50.3), Currency.Dollar);
-            var amountWithSameValues = new Amount(new decimal(50.3), Currency.Dollar);
-
-            var set = new HashSet<Amount> { amount };
-
-            Check.That(set).ContainsExactly(amountWithSameValues);
         }
 
         [Test]
@@ -106,19 +75,65 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_find_equals_2_different_instances_of_ValueType_with_different_values_when_equality_is_badly_implemented()
+        public void
+            Should_find_equals_2_different_instances_of_ValueType_with_different_values_when_equality_is_badly_implemented
+            ()
         {
-            var itemPrice = new ItemPriceWithBadImplementationForEqualityAndUnicity("movie", new decimal(50.3), Currency.Dollar);
-            var differentItemPriceValue = new ItemPriceWithBadImplementationForEqualityAndUnicity("not a movie", new decimal(50.3), Currency.Dollar);
+            var itemPrice = new ItemPriceWithBadImplementationForEqualityAndUnicity(
+                "movie", 
+                new decimal(50.3), 
+                Currency.Dollar);
+            var differentItemPriceValue = new ItemPriceWithBadImplementationForEqualityAndUnicity(
+                "not a movie", 
+                new decimal(50.3), 
+                Currency.Dollar);
 
             Check.That(itemPrice).IsEqualTo(differentItemPriceValue); // because bad implementation of equality
         }
 
         [Test]
-        public void Should_retrieve_wrong_instances_from_a_set_when_unicity_is_badly_implemented_on_a_derived_value_type()
+        public void Should_find_equals_2_different_instances_of_ValueType_with_same_values()
         {
-            var itemPrice = new ItemPriceWithBadImplementationForEqualityAndUnicity("movie", new decimal(50.3), Currency.Dollar);
-            var itemPriceWithOtherValues = new ItemPriceWithBadImplementationForEqualityAndUnicity("XXX movie", new decimal(50.3), Currency.Dollar);
+            var amount = new Amount(new decimal(50.3), Currency.Dollar);
+            var sameAmountValue = new Amount(new decimal(50.3), Currency.Dollar);
+
+            Check.That(amount).IsEqualTo(sameAmountValue);
+        }
+
+        [Test]
+        public void Should_retrieve_properly_implemented_derived_value_type_with_same_values_in_a_set()
+        {
+            var itemPrice = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
+            var itemPriceWithSameValues = new ItemPrice("movie", new decimal(50.3), Currency.Dollar);
+
+            var set = new HashSet<ItemPrice> { itemPrice };
+
+            Check.That(set).ContainsExactly(itemPriceWithSameValues);
+        }
+
+        [Test]
+        public void Should_retrieve_value_type_with_same_values_in_a_set()
+        {
+            var amount = new Amount(new decimal(50.3), Currency.Dollar);
+            var amountWithSameValues = new Amount(new decimal(50.3), Currency.Dollar);
+
+            var set = new HashSet<Amount> { amount };
+
+            Check.That(set).ContainsExactly(amountWithSameValues);
+        }
+
+        [Test]
+        public void Should_retrieve_wrong_instances_from_a_set_when_unicity_is_badly_implemented_on_a_derived_value_type
+            ()
+        {
+            var itemPrice = new ItemPriceWithBadImplementationForEqualityAndUnicity(
+                "movie", 
+                new decimal(50.3), 
+                Currency.Dollar);
+            var itemPriceWithOtherValues = new ItemPriceWithBadImplementationForEqualityAndUnicity(
+                "XXX movie", 
+                new decimal(50.3), 
+                Currency.Dollar);
 
             var set = new HashSet<ItemPriceWithBadImplementationForEqualityAndUnicity> { itemPrice };
 

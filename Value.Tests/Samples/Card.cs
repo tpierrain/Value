@@ -1,18 +1,18 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Card.cs">
-//     Copyright 2016
-//           Thomas PIERRAIN (@tpierrain)    
-//     Licensed under the Apache License, Version 2.0 (the "License");
-//     you may not use this file except in compliance with the License.
-//     You may obtain a copy of the License at
-//         http://www.apache.org/licenses/LICENSE-2.0
-//     Unless required by applicable law or agreed to in writing, software
-//     distributed under the License is distributed on an "AS IS" BASIS,
-//     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//     See the License for the specific language governing permissions and
-//     limitations under the License.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+// // --------------------------------------------------------------------------------------------------------------------
+// // <copyright file="Card.cs">
+// //     Copyright 2016
+// //           Thomas PIERRAIN (@tpierrain)    
+// //     Licensed under the Apache License, Version 2.0 (the "License");
+// //     you may not use this file except in compliance with the License.
+// //     You may obtain a copy of the License at
+// //         http://www.apache.org/licenses/LICENSE-2.0
+// //     Unless required by applicable law or agreed to in writing, software
+// //     distributed under the License is distributed on an "AS IS" BASIS,
+// //     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// //     See the License for the specific language governing permissions and
+// //     limitations under the License.b 
+// // </copyright>
+// // --------------------------------------------------------------------------------------------------------------------
 namespace Value.Tests.Samples
 {
     using System;
@@ -26,11 +26,11 @@ namespace Value.Tests.Samples
         // TODO: make cards ranking dependant on poker game type (high-low, omaha, etc)?
         private const int AceValue = 14;
 
+        private const int JackValue = 11;
+
         private const int KingValue = 13;
 
         private const int QueenValue = 12;
-
-        private const int JackValue = 11;
 
         private Card(string cardDescription, int value, Suit suit)
         {
@@ -39,21 +39,7 @@ namespace Value.Tests.Samples
             this.Suit = suit;
         }
 
-        public override string ToString()
-        {
-            return $"{this.CardDescription}";
-        }
-
-        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
-        {
-            return new List<object>() { this.Value, this.CardDescription, this.DisplayName, this.Suit };
-        }
-
-        public Suit Suit { get; private set; }
-
         public string CardDescription { get; private set; }
-
-        public int Value { get; private set; }
 
         public string DisplayName
         {
@@ -82,30 +68,44 @@ namespace Value.Tests.Samples
             }
         }
 
-        public int CompareTo(Card other)
-        {
-            return this.Value.CompareTo(other.Value);
-        }
+        public Suit Suit { get; private set; }
+
+        public int Value { get; private set; }
 
         public static Card Parse(string cardDescription)
         {
             return new Card(cardDescription, ExtractValue(cardDescription), ExtractSuit(cardDescription));
         }
 
+        public int CompareTo(Card other)
+        {
+            return this.Value.CompareTo(other.Value);
+        }
+
+        public override string ToString()
+        {
+            return $"{this.CardDescription}";
+        }
+
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
+        {
+            return new List<object>() { this.Value, this.CardDescription, this.DisplayName, this.Suit };
+        }
+
         private static Suit ExtractSuit(string cardDescription)
         {
             switch (cardDescription[1])
             {
-                case ('C'):
+                case 'C':
                     return Suit.C;
 
-                case ('D'):
+                case 'D':
                     return Suit.D;
 
-                case ('H'):
+                case 'H':
                     return Suit.H;
 
-                case ('S'):
+                case 'S':
                     return Suit.S;
 
                 default:
@@ -127,18 +127,22 @@ namespace Value.Tests.Samples
 
                     case 'J':
                         return JackValue;
+
                         break;
 
                     case 'Q':
                         return QueenValue;
+
                         break;
 
                     case 'K':
                         return KingValue;
+
                         break;
 
                     case 'A':
                         return AceValue;
+
                         break;
 
                     default:

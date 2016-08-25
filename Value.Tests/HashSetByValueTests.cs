@@ -15,9 +15,7 @@
 // // --------------------------------------------------------------------------------------------------------------------
 namespace Value.Tests
 {
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
     using NFluent;
     using NUnit.Framework;
     using Value.Tests.Samples;
@@ -25,6 +23,54 @@ namespace Value.Tests
     [TestFixture]
     public class HashSetByValueTests
     {
+        [Test]
+        public void Should_change_its_hashcode_everytime_the_set_is_updated()
+        {
+            var set = new HashSetByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var firstHashCode = set.GetHashCode();
+
+            set.Add(Card.Parse("3H")); // ---update the set ---
+            var afterAddHash = set.GetHashCode();
+            Check.That(firstHashCode).IsNotEqualTo(afterAddHash);
+
+            set.Clear();
+            var afterClearHash = set.GetHashCode();
+            Check.That(afterClearHash).IsNotEqualTo(afterAddHash);
+
+            set.Add(Card.Parse("1C"));
+            set.Add(Card.Parse("2C"));
+            set.Add(Card.Parse("KD"));
+            set.Add(Card.Parse("AC"));
+
+            afterAddHash = set.GetHashCode();
+
+            set.ExceptWith(new List<Card>() { Card.Parse("AC") });
+            var afterExceptWithHash = set.GetHashCode();
+            Check.That(afterExceptWithHash).IsNotEqualTo(afterAddHash);
+
+            set.IntersectWith(new[] { Card.Parse("2C"), Card.Parse("1C") });
+            var afterIntersectWithHash = set.GetHashCode();
+            Check.That(afterIntersectWithHash).IsNotEqualTo(afterExceptWithHash);
+
+            Check.That(set).ContainsExactly(Card.Parse("1C"), Card.Parse("2C"));
+            set.Remove(Card.Parse("1C"));
+            var afterRemoveHash = set.GetHashCode();
+            Check.That(afterRemoveHash).IsNotEqualTo(afterIntersectWithHash);
+
+            ((ISet<Card>)set).Add(Card.Parse("AD"));
+            ((ISet<Card>)set).Add(Card.Parse("AS"));
+            afterAddHash = set.GetHashCode();
+            Check.That(afterAddHash).IsNotEqualTo(afterRemoveHash);
+
+            set.UnionWith(new[] { Card.Parse("7H") });
+            var afterUnionWithHash = set.GetHashCode();
+            Check.That(afterUnionWithHash).IsNotEqualTo(afterAddHash);
+
+            set.SymmetricExceptWith(new[] { Card.Parse("AD") });
+            var afterSymetricExceptWithHash = set.GetHashCode();
+            Check.That(afterSymetricExceptWithHash).IsNotEqualTo(afterUnionWithHash);
+        }
+
         [Test]
         public void Should_consider_two_sets_with_same_items_equals()
         {
@@ -53,6 +99,108 @@ namespace Value.Tests
         }
 
         [Test]
+        public void Should_properly_expose_Contains()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.Contains(Card.Parse("QC"))).IsEqualTo(originalSet.Contains(Card.Parse("QC")));
+        }
+
+        [Test]
+        public void Should_properly_expose_CopyTo()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            var firstCards = new Card[originalSet.Count];
+            var secondCards = new Card[originalSet.Count];
+            originalSet.CopyTo(firstCards, 0);
+            byValueSet.CopyTo(secondCards, 0);
+
+            Check.That(secondCards).ContainsExactly(firstCards);
+        }
+
+        [Test]
+        public void Should_properly_expose_Count()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.Count).IsEqualTo(originalSet.Count);
+        }
+
+        [Test]
+        public void Should_properly_expose_IsProperSubsetOf()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.IsProperSubsetOf(new[] { Card.Parse("QC") }))
+                .IsEqualTo(originalSet.IsProperSubsetOf(new[] { Card.Parse("QC") }));
+        }
+
+        [Test]
+        public void Should_properly_expose_IsProperSupersetOf()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.IsProperSupersetOf(new[] { Card.Parse("QC") }))
+                .IsTrue()
+                .And.IsEqualTo(originalSet.IsProperSupersetOf(new[] { Card.Parse("QC") }));
+        }
+
+        [Test]
+        public void Should_properly_expose_IsReadOnly()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.IsReadOnly).IsEqualTo(((ICollection<Card>)originalSet).IsReadOnly);
+        }
+
+        [Test]
+        public void Should_properly_expose_IsSubsetOf()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.IsSubsetOf(new[] { Card.Parse("QC") }))
+                .IsEqualTo(originalSet.IsSubsetOf(new[] { Card.Parse("QC") }));
+        }
+
+        [Test]
+        public void Should_properly_expose_IsSupersetOf()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.IsSupersetOf(new[] { Card.Parse("QC") }))
+                .IsEqualTo(originalSet.IsSupersetOf(new[] { Card.Parse("QC") }));
+        }
+
+        [Test]
+        public void Should_properly_expose_Overlaps()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.Overlaps(new[] { Card.Parse("QC") }))
+                .IsEqualTo(originalSet.Overlaps(new[] { Card.Parse("QC") }));
+        }
+
+        [Test]
+        public void Should_properly_expose_SetEquals()
+        {
+            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            var byValueSet = new HashSetByValue<Card>(originalSet);
+
+            Check.That(byValueSet.SetEquals(new[] { Card.Parse("QC") }))
+                .IsEqualTo(originalSet.SetEquals(new[] { Card.Parse("QC") }));
+        }
+
+        [Test]
         public void Should_provide_different_GetHashCode_for_two_different_sets()
         {
             var set1 = new HashSetByValue<string> { "Achille", "Anton", "Maxime" };
@@ -78,150 +226,5 @@ namespace Value.Tests
 
             Check.That(set2.GetHashCode()).IsEqualTo(set1.GetHashCode());
         }
-
-        [Test]
-        public void Should_change_its_hashcode_everytime_the_set_is_updated()
-        {
-            var set = new HashSetByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var firstHashCode = set.GetHashCode();
-
-            set.Add(Card.Parse("3H")); // ---update the set ---
-            var afterAddHash = set.GetHashCode();
-            Check.That(firstHashCode).IsNotEqualTo(afterAddHash);
-
-            set.Clear();
-            var afterClearHash = set.GetHashCode();
-            Check.That(afterClearHash).IsNotEqualTo(afterAddHash);
-
-            set.Add(Card.Parse("1C"));
-            set.Add(Card.Parse("2C"));
-            set.Add(Card.Parse("KD"));
-            set.Add(Card.Parse("AC"));
-            
-            afterAddHash = set.GetHashCode();
-
-            set.ExceptWith(new List<Card>() { Card.Parse("AC") });
-            var afterExceptWithHash = set.GetHashCode();
-            Check.That(afterExceptWithHash).IsNotEqualTo(afterAddHash);
-
-            set.IntersectWith(new Card[] { Card.Parse("2C"), Card.Parse("1C") });
-            var afterIntersectWithHash = set.GetHashCode();
-            Check.That(afterIntersectWithHash).IsNotEqualTo(afterExceptWithHash);
-
-
-            Check.That(set).ContainsExactly(Card.Parse("1C"), Card.Parse("2C"));
-            set.Remove(Card.Parse("1C"));
-            var afterRemoveHash = set.GetHashCode();
-            Check.That(afterRemoveHash).IsNotEqualTo(afterIntersectWithHash);
-
-            ((ISet<Card>)set).Add(Card.Parse("AD"));
-            ((ISet<Card>)set).Add(Card.Parse("AS"));
-            afterAddHash = set.GetHashCode();
-            Check.That(afterAddHash).IsNotEqualTo(afterRemoveHash);
-
-            set.UnionWith(new Card[] { Card.Parse("7H") });
-            var afterUnionWithHash = set.GetHashCode();
-            Check.That(afterUnionWithHash).IsNotEqualTo(afterAddHash);
-
-            set.SymmetricExceptWith(new Card[] { Card.Parse("AD") });
-            var afterSymetricExceptWithHash = set.GetHashCode();
-            Check.That(afterSymetricExceptWithHash).IsNotEqualTo(afterUnionWithHash);
-        }
-
-        [Test]
-        public void Should_properly_expose_Count()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.Count).IsEqualTo(originalSet.Count);
-        }
-
-        [Test]
-        public void Should_properly_expose_IsReadOnly()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.IsReadOnly).IsEqualTo(((ICollection<Card>)originalSet).IsReadOnly);
-        }
-
-        [Test]
-        public void Should_properly_expose_Contains()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.Contains(Card.Parse("QC"))).IsEqualTo(originalSet.Contains(Card.Parse("QC")));
-        }
-
-        [Test]
-        public void Should_properly_expose_CopyTo()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            var firstCards = new Card[originalSet.Count];
-            var secondCards = new Card[originalSet.Count];
-            originalSet.CopyTo(firstCards, 0);
-            byValueSet.CopyTo(secondCards, 0);
-
-            Check.That(secondCards).ContainsExactly(firstCards);
-        }
-
-        [Test]
-        public void Should_properly_expose_IsProperSubsetOf()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.IsProperSubsetOf(new Card[] { Card.Parse("QC") })).IsEqualTo(originalSet.IsProperSubsetOf((new Card[] { Card.Parse("QC") })));
-        }
-
-        [Test]
-        public void Should_properly_expose_IsProperSupersetOf()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.IsProperSupersetOf(new Card[] { Card.Parse("QC") })).IsTrue().And.IsEqualTo(originalSet.IsProperSupersetOf(new Card[] { Card.Parse("QC") }));
-        }
-
-        [Test]
-        public void Should_properly_expose_IsSubsetOf()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.IsSubsetOf(new Card[] { Card.Parse("QC") })).IsEqualTo(originalSet.IsSubsetOf((new Card[] { Card.Parse("QC") })));
-        }
-
-        [Test]
-        public void Should_properly_expose_IsSupersetOf()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.IsSupersetOf(new Card[] { Card.Parse("QC") })).IsEqualTo(originalSet.IsSupersetOf((new Card[] { Card.Parse("QC") })));
-        }
-
-        [Test]
-        public void Should_properly_expose_Overlaps()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.Overlaps(new Card[] { Card.Parse("QC") })).IsEqualTo(originalSet.Overlaps((new Card[] { Card.Parse("QC") })));
-        }
-
-        [Test]
-        public void Should_properly_expose_SetEquals()
-        {
-            var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var byValueSet = new HashSetByValue<Card>(originalSet);
-
-            Check.That(byValueSet.SetEquals(new Card[] { Card.Parse("QC") })).IsEqualTo(originalSet.SetEquals((new Card[] { Card.Parse("QC") })));
-        }
-
     }
 }

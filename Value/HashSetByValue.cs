@@ -19,7 +19,7 @@ namespace Value
     using System.Collections.Generic;
 
     /// <summary>
-    ///     An Set with equality based on its content and not on the Set's reference 
+    ///     A Set with equality based on its content and not on the Set's reference 
     ///     (i.e.: 2 different instances containing the same items will be equals whatever their storage order).
     /// </summary>
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>

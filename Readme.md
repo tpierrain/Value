@@ -81,8 +81,11 @@ __Yeah, let's focus on our business value now!__
 
 ```
 
- - __ListByValue<T>__: a list supporting equality based on its content and not on its reference (i.e.: 2 different instances containing the same items will be equals). This collection is __very useful for any ValueType that would like to aggregate a list__
+ - __ListByValue<T>__: A list with equality based on its content and not on the list's reference (i.e.: 2 different instances containing the same items in the same order will be equals). This collection is __very useful for any ValueType that would like to aggregate a list__
 
+ - __HashSetByValue<T>__: A Set with equality based on its content and not on the Set's reference (i.e.: 2 different instances containing the same items will be equals whatever their storage order). This collection is __very useful for any ValueType that would like to aggregate a set__
+
+ 
  - ...
 
  

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmountTests.cs" />
+    <Compile Include="HashSetByValueTests.cs" />
     <Compile Include="Samples\Amount.cs" />
     <Compile Include="Samples\Card.cs" />
     <Compile Include="Samples\Currency.cs" />

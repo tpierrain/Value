@@ -113,7 +113,8 @@ __Yeah, let's focus on our business value now!__
 
 --- 
 
-## Samples of ValueTypes
+## Usage samples of ValueTypes
+
 __Disclaimer:__ for the sake of clarity, the following code samples don't have behaviours to only focus here on the Equality concern. __Of course, a ValueType in DDD must embed behaviours to swallow complexity (it's not just a DTO or a POCO without responsibilities).__
 
 Code Sample of a properly implemented ValueType:

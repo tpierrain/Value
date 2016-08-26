@@ -144,7 +144,7 @@ Code Sample of a properly implemented ValueType:
     }
 ```
 
-Now, let's have a look at a bad ValueType implementation: 
+Code Sample of a bad ValueType implementation: 
 
 ```c#
     /// <summary>

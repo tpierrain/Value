@@ -46,7 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmountTests.cs" />
-    <Compile Include="SetByValueTests.cs" />
+    <Compile Include="Samples\SetByValueTests.cs" />
+    <Compile Include="Samples\ThreeCards.cs" />
     <Compile Include="Samples\Amount.cs" />
     <Compile Include="Samples\Card.cs" />
     <Compile Include="Samples\Currency.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Samples\Suit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ListByValueTests.cs" />
+    <Compile Include="Samples\ThreeCardsBadlyImplementedAsValueType.cs" />
     <Compile Include="ValueTypeTests.cs" />
   </ItemGroup>
   <ItemGroup>

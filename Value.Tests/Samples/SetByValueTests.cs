@@ -1,4 +1,4 @@
-﻿// // --------------------------------------------------------------------------------------------------------------------
+// // --------------------------------------------------------------------------------------------------------------------
 // // <copyright file="SetByValueTests.cs">
 // //     Copyright 2016
 // //           Thomas PIERRAIN (@tpierrain)    
@@ -13,16 +13,61 @@
 // //     limitations under the License.b 
 // // </copyright>
 // // --------------------------------------------------------------------------------------------------------------------
-namespace Value.Tests
+namespace Value.Tests.Samples
 {
     using System.Collections.Generic;
     using NFluent;
     using NUnit.Framework;
-    using Samples;
 
     [TestFixture]
     public class SetByValueTests
     {
+        [Test]
+        public void Should_consider_two_sets_with_same_items_equals()
+        {
+            var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
+            var set2 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
+
+            Check.That(set2).IsEqualTo(set1);
+        }
+
+        [Test]
+        public void Should_consider_two_sets_with_same_items_in_different_order_equals()
+        {
+            var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
+            var set2 = new SetByValue<string> { "Maxime", "Anton", "Achille" };
+
+            Check.That(set2).IsEqualTo(set1);
+        }
+
+        [Test]
+        public void Should_not_consider_a_classic_hashSet_and_a_HashSetByValue_Equals()
+        {
+            var set1 = new HashSet<string> { "Achille", "Anton", "Maxime" };
+            var set2 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
+
+            Check.That(set2).IsNotEqualTo(set1);
+        }
+
+        [Test]
+        public void Should_consider_equals_two_ValueType_instances_that_aggregates_equivalent_SetByValue()
+        {
+            var threeCards = new ThreeCards("AS", "QD", "2H");
+            var sameThreeCards = new ThreeCards("2H", "QD", "AS");
+
+            Check.That(threeCards).IsEqualTo(sameThreeCards);
+        }
+
+        [Test]
+        public void
+            Should_consider_Not_equals_two_badly_implemented_ValueType_instances_that_aggregates_equivalent_HashSet()
+        {
+            var threeCards = new ThreeCardsBadlyImplementedAsValueType("AS", "QD", "2H");
+            var sameThreeCards = new ThreeCardsBadlyImplementedAsValueType("2H", "QD", "AS");
+
+            Check.That(threeCards).IsNotEqualTo(sameThreeCards);
+        }
+
         [Test]
         public void Should_change_its_hashcode_everytime_the_set_is_updated()
         {
@@ -69,33 +114,6 @@ namespace Value.Tests
             set.SymmetricExceptWith(new[] { Card.Parse("AD") });
             var afterSymetricExceptWithHash = set.GetHashCode();
             Check.That(afterSymetricExceptWithHash).IsNotEqualTo(afterUnionWithHash);
-        }
-
-        [Test]
-        public void Should_consider_two_sets_with_same_items_equals()
-        {
-            var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
-            var set2 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
-
-            Check.That(set2).IsEqualTo(set1);
-        }
-
-        [Test]
-        public void Should_consider_two_sets_with_same_items_in_different_order_equals()
-        {
-            var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
-            var set2 = new SetByValue<string> { "Maxime", "Anton", "Achille" };
-
-            Check.That(set2).IsEqualTo(set1);
-        }
-
-        [Test]
-        public void Should_not_consider_a_classic_hashSet_and_a_HashSetByValue_Equals()
-        {
-            var set1 = new HashSet<string> { "Achille", "Anton", "Maxime" };
-            var set2 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
-
-            Check.That(set2).IsNotEqualTo(set1);
         }
 
         [Test]

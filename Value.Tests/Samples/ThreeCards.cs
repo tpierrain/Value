@@ -18,12 +18,12 @@ namespace Value.Tests.Samples
     using System.Collections.Generic;
 
     /// <summary>
-    /// Proper implementation of a ThreeeCards ValueType since the order of the cards doesn't matter during
-    /// Equality.
+    ///     Proper implementation of a ThreeeCards ValueType since the order of the cards doesn't matter during
+    ///     Equality.
     /// </summary>
     public class ThreeCards : ValueType<ThreeCards>
     {
-        private HashSet<Card> cards;
+        private readonly HashSet<Card> cards;
 
         public ThreeCards(string card1Description, string card2Description, string card3Description)
         {
@@ -36,7 +36,7 @@ namespace Value.Tests.Samples
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return new List<object>() { new SetByValue<Card>(this.cards) };
+            return new List<object> { new SetByValue<Card>(this.cards) };
         }
     }
 }

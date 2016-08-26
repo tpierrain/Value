@@ -18,17 +18,14 @@ namespace Value.Tests.Samples
     using System.Collections.Generic;
 
     /// <summary>
-    /// Bad ValueType implementation of ThreeCards since the GetAllAttributesToBeUsedForEquality() method 
-    /// returns the set directly, without decoring it with the SetByValue helper.
+    ///     Bad ValueType implementation of ThreeCards since the GetAllAttributesToBeUsedForEquality() method
+    ///     returns the set directly, without decoring it with the SetByValue helper.
     /// </summary>
     public class ThreeCardsBadlyImplementedAsValueType : ValueType<ThreeCards>
     {
-        private HashSet<Card> cards;
+        private readonly HashSet<Card> cards;
 
-        public ThreeCardsBadlyImplementedAsValueType(
-            string card1Description, 
-            string card2Description, 
-            string card3Description)
+        public ThreeCardsBadlyImplementedAsValueType(string card1Description, string card2Description, string card3Description)
         {
             this.cards = new HashSet<Card>();
 
@@ -40,7 +37,7 @@ namespace Value.Tests.Samples
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
             // Here, should have done returned "new SetByValue<Card>(this.cards)" instead of "this.cards"
-            return new List<object>() { this.cards };
+            return new List<object> { this.cards };
         }
     }
 }

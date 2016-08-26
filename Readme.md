@@ -22,7 +22,7 @@ __A Value Type:__
  - is __auto-validating__ (via *transactional* constructors __with business validation inside__ and throwing exception if necessary)
 
 
-### Reverse the trend! (Value Types vs. Entities)
+### Reverse the trend! (we need more Value Types, and less Entities)
 
 An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity. Even if the choice you make will strongly depends on your business context (*there is no silver bullet*), here is some basic samples to better grasp the difference between *Value Types* and *Entities*:
  

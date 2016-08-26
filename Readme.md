@@ -111,6 +111,64 @@ __Yeah, let's focus on our business value now!__
       }
 ```
 
+--- 
 
- 
+## Samples of ValueTypes
+__Disclaimer:__ The following code samples don't have behaviours to focus here only on the Equality-related concern for them. __Of course, a ValueType must embed behaviours (it's not just a DTO or a POCO without responsibilities).__
+
+Code Sample of a properly implemented ValueType:
+
+```c#
+    /// <summary>
+    /// Proper implementation of a ThreeeCards ValueType since the order of the cards doesn't matter during
+    /// Equality. Note: the Card type is also a ValueType.
+    /// </summary>
+    public class ThreeCards : ValueType<ThreeCards>
+    {
+        private HashSet<Card> cards;
+
+        public ThreeCards(string card1Description, string card2Description, string card3Description)
+        {
+            this.cards = new HashSet<Card>();
+
+            this.cards.Add(Card.Parse(card1Description));
+            this.cards.Add(Card.Parse(card2Description));
+            this.cards.Add(Card.Parse(card3Description));
+        }
+
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
+        {
+            // we decorate our standard HashSet with the SetByValue helper class.
+            return new List<object>() { new SetByValue<Card>(this.cards) };
+        }
+    }
+```
+
+Now, let's see a code Sample of a badly implemented ValueType: 
+
+```c#
+    /// <summary>
+    /// Bad ValueType implementation of ThreeCards since the GetAllAttributesToBeUsedForEquality() method 
+    /// returns the set directly, without decoring it with the SetByValue helper.
+    /// </summary>
+    public class ThreeCardsBadlyImplementedAsValueType : ValueType<ThreeCards>
+    {
+        private HashSet<Card> cards;
+
+        public ThreeCardsBadlyImplementedAsValueType(string card1Description, string card2Description, string card3Description)
+        {
+            this.cards = new HashSet<Card>();
+
+            this.cards.Add(Card.Parse(card1Description));
+            this.cards.Add(Card.Parse(card2Description));
+            this.cards.Add(Card.Parse(card3Description));
+        }
+
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
+        {
+            // BAD IMPLEMENTATION HERE: should have returned "new SetByValue<Card>(this.cards)" instead of "this.cards"
+            return new List<object>() { this.cards };
+        }
+    }
+```
  

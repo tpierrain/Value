@@ -126,7 +126,7 @@ Code Sample of a properly implemented ValueType:
     /// </summary>
     public class ThreeCards : ValueType<ThreeCards>
     {
-        private HashSet<Card> cards;
+        private readonly HashSet<Card> cards;
 
         public ThreeCards(string card1Description, string card2Description, string card3Description)
         {
@@ -154,7 +154,7 @@ Code Sample of a bad ValueType implementation:
     /// </summary>
     public class ThreeCardsBadlyImplementedAsValueType : ValueType<ThreeCards>
     {
-        private HashSet<Card> cards;
+        private readonly HashSet<Card> cards;
 
         public ThreeCardsBadlyImplementedAsValueType(string card1Description, string card2Description, string card3Description)
         {

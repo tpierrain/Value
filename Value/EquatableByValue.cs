@@ -15,9 +15,13 @@
 // // --------------------------------------------------------------------------------------------------------------------
 namespace Value
 {
+    #region
+
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    #endregion
 
     /// <summary>
     /// Support a by-Value Equality and Unicity.
@@ -26,7 +30,9 @@ namespace Value
     /// <typeparam name="T"></typeparam>
     public abstract class EquatableByValue<T> : IEquatable<T> where T : EquatableByValue<T>
     {
-        private int? hashCode;
+        private const int undefined = -1;
+
+        private volatile int hashCode = undefined;
 
         public static bool operator ==(EquatableByValue<T> x, EquatableByValue<T> y)
         {
@@ -84,24 +90,24 @@ namespace Value
 
         protected virtual void ResetHashCode()
         {
-            this.hashCode = null;
+            this.hashCode = undefined;
         }
 
         private int GetHashCodeImpl()
         {
-            if (this.hashCode == null)
+            if (this.hashCode == undefined)
             {
                 var code = 0;
 
                 foreach (var attribute in this.GetAllAttributesToBeUsedForEquality())
                 {
-                    code = (code * 397) ^ ((attribute == null) ? 0 : attribute.GetHashCode());
+                    code = (code * 397) ^ (attribute == null ? 0 : attribute.GetHashCode());
                 }
 
                 this.hashCode = code;
             }
 
-            return this.hashCode.Value;
+            return this.hashCode;
         }
     }
 }

@@ -175,7 +175,7 @@ Now, let's have a look at a bad ValueType implementation:
 Now, let's have a look a 2 tests that clarify the impact of those 2 implementations:
 
 ```c#
-[Test]
+        [Test]
         public void Should_consider_equals_two_ValueType_instances_that_aggregates_equivalent_SetByValue()
         {
             var threeCards = new ThreeCards("AS", "QD", "2H");

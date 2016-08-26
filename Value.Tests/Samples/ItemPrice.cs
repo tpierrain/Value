@@ -30,10 +30,7 @@ namespace Value.Tests.Samples
             this.itemName = itemName;
         }
 
-        public string ItemName
-        {
-            get { return this.itemName; }
-        }
+        public string ItemName { get { return this.itemName; } }
 
         public override string ToString()
         {

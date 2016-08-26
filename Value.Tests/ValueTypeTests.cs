@@ -75,18 +75,10 @@ namespace Value.Tests
         }
 
         [Test]
-        public void
-            Should_find_equals_2_different_instances_of_ValueType_with_different_values_when_equality_is_badly_implemented
-            ()
+        public void Should_find_equals_2_different_instances_of_ValueType_with_different_values_when_equality_is_badly_implemented()
         {
-            var itemPrice = new ItemPriceWithBadImplementationForEqualityAndUnicity(
-                "movie", 
-                new decimal(50.3), 
-                Currency.Dollar);
-            var differentItemPriceValue = new ItemPriceWithBadImplementationForEqualityAndUnicity(
-                "not a movie", 
-                new decimal(50.3), 
-                Currency.Dollar);
+            var itemPrice = new ItemPriceWithBadImplementationForEqualityAndUnicity("movie", new decimal(50.3), Currency.Dollar);
+            var differentItemPriceValue = new ItemPriceWithBadImplementationForEqualityAndUnicity("not a movie", new decimal(50.3), Currency.Dollar);
 
             Check.That(itemPrice).IsEqualTo(differentItemPriceValue); // because bad implementation of equality
         }
@@ -123,17 +115,10 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_retrieve_wrong_instances_from_a_set_when_unicity_is_badly_implemented_on_a_derived_value_type
-            ()
+        public void Should_retrieve_wrong_instances_from_a_set_when_unicity_is_badly_implemented_on_a_derived_value_type()
         {
-            var itemPrice = new ItemPriceWithBadImplementationForEqualityAndUnicity(
-                "movie", 
-                new decimal(50.3), 
-                Currency.Dollar);
-            var itemPriceWithOtherValues = new ItemPriceWithBadImplementationForEqualityAndUnicity(
-                "XXX movie", 
-                new decimal(50.3), 
-                Currency.Dollar);
+            var itemPrice = new ItemPriceWithBadImplementationForEqualityAndUnicity("movie", new decimal(50.3), Currency.Dollar);
+            var itemPriceWithOtherValues = new ItemPriceWithBadImplementationForEqualityAndUnicity("XXX movie", new decimal(50.3), Currency.Dollar);
 
             var set = new HashSet<ItemPriceWithBadImplementationForEqualityAndUnicity> { itemPrice };
 

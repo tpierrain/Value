@@ -34,25 +34,16 @@ namespace Value.Tests.Samples
             this.currency = currency;
         }
 
-        public Currency Currency
-        {
-            get { return this.currency; }
-        }
+        public Currency Currency { get { return this.currency; } }
 
-        public decimal Quantity
-        {
-            get { return this.quantity; }
-        }
+        public decimal Quantity { get { return this.quantity; } }
 
         public Amount Add(Amount otherAmount)
         {
             if (this.Currency != otherAmount.Currency)
             {
                 throw new InvalidOperationException(
-                    string.Format(
-                        "Can't add amounts with different currencies: Amount= {0} and other amount= {1}.", 
-                        this, 
-                        otherAmount));
+                    string.Format("Can't add amounts with different currencies: Amount= {0} and other amount= {1}.", this, otherAmount));
             }
 
             return new Amount(this.Quantity + otherAmount.Quantity, this.Currency);

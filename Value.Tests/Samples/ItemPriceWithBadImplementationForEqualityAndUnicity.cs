@@ -20,8 +20,7 @@ namespace Value.Tests.Samples
     /// </summary>
     public class ItemPriceWithBadImplementationForEqualityAndUnicity : Amount
     {
-        public ItemPriceWithBadImplementationForEqualityAndUnicity(string itemName, decimal quantity, Currency currency)
-            : base(quantity, currency)
+        public ItemPriceWithBadImplementationForEqualityAndUnicity(string itemName, decimal quantity, Currency currency) : base(quantity, currency)
         {
             this.ItemName = itemName;
         }

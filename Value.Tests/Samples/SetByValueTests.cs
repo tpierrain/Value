@@ -59,8 +59,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void
-            Should_consider_Not_equals_two_badly_implemented_ValueType_instances_that_aggregates_equivalent_HashSet()
+        public void Should_consider_Not_equals_two_badly_implemented_ValueType_instances_that_aggregates_equivalent_HashSet()
         {
             var threeCards = new ThreeCardsBadlyImplementedAsValueType("AS", "QD", "2H");
             var sameThreeCards = new ThreeCardsBadlyImplementedAsValueType("2H", "QD", "AS");
@@ -154,8 +153,7 @@ namespace Value.Tests.Samples
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
 
-            Check.That(byValueSet.IsProperSubsetOf(new[] { Card.Parse("QC") }))
-                .IsEqualTo(originalSet.IsProperSubsetOf(new[] { Card.Parse("QC") }));
+            Check.That(byValueSet.IsProperSubsetOf(new[] { Card.Parse("QC") })).IsEqualTo(originalSet.IsProperSubsetOf(new[] { Card.Parse("QC") }));
         }
 
         [Test]
@@ -184,8 +182,7 @@ namespace Value.Tests.Samples
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
 
-            Check.That(byValueSet.IsSubsetOf(new[] { Card.Parse("QC") }))
-                .IsEqualTo(originalSet.IsSubsetOf(new[] { Card.Parse("QC") }));
+            Check.That(byValueSet.IsSubsetOf(new[] { Card.Parse("QC") })).IsEqualTo(originalSet.IsSubsetOf(new[] { Card.Parse("QC") }));
         }
 
         [Test]
@@ -194,8 +191,7 @@ namespace Value.Tests.Samples
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
 
-            Check.That(byValueSet.IsSupersetOf(new[] { Card.Parse("QC") }))
-                .IsEqualTo(originalSet.IsSupersetOf(new[] { Card.Parse("QC") }));
+            Check.That(byValueSet.IsSupersetOf(new[] { Card.Parse("QC") })).IsEqualTo(originalSet.IsSupersetOf(new[] { Card.Parse("QC") }));
         }
 
         [Test]
@@ -204,8 +200,7 @@ namespace Value.Tests.Samples
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
 
-            Check.That(byValueSet.Overlaps(new[] { Card.Parse("QC") }))
-                .IsEqualTo(originalSet.Overlaps(new[] { Card.Parse("QC") }));
+            Check.That(byValueSet.Overlaps(new[] { Card.Parse("QC") })).IsEqualTo(originalSet.Overlaps(new[] { Card.Parse("QC") }));
         }
 
         [Test]
@@ -214,8 +209,7 @@ namespace Value.Tests.Samples
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
 
-            Check.That(byValueSet.SetEquals(new[] { Card.Parse("QC") }))
-                .IsEqualTo(originalSet.SetEquals(new[] { Card.Parse("QC") }));
+            Check.That(byValueSet.SetEquals(new[] { Card.Parse("QC") })).IsEqualTo(originalSet.SetEquals(new[] { Card.Parse("QC") }));
         }
 
         [Test]

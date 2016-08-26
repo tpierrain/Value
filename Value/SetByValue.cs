@@ -91,7 +91,7 @@ namespace Value
         {
             if (this.hashCode == null)
             {
-                int code = 0;
+                var code = 0;
 
                 // Two instances with same elements added in different order must return the same hashcode
                 // Let's compute and sort hashcodes of all elements (always in the same order)

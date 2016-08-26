@@ -114,7 +114,7 @@ __Yeah, let's focus on our business value now!__
 --- 
 
 ## Samples of ValueTypes
-__Disclaimer:__ for the sake of clarity, the following code samples don't have behaviours to focus here only on the Equality-related concern for them. __Of course, a ValueType in DDD must embed behaviours to swallow complexity (it's not just a DTO or a POCO without responsibilities).__
+__Disclaimer:__ for the sake of clarity, the following code samples don't have behaviours to only focus here on the Equality concern. __Of course, a ValueType in DDD must embed behaviours to swallow complexity (it's not just a DTO or a POCO without responsibilities).__
 
 Code Sample of a properly implemented ValueType:
 
@@ -144,7 +144,7 @@ Code Sample of a properly implemented ValueType:
     }
 ```
 
-Now, let's see a code Sample of a badly implemented ValueType: 
+Now, let's have a look at a bad ValueType implementation: 
 
 ```c#
     /// <summary>
@@ -170,5 +170,27 @@ Now, let's see a code Sample of a badly implemented ValueType:
             return new List<object>() { this.cards };
         }
     }
+```
+
+Now, let's have a look a 2 tests that clarify the impact of those 2 implementations:
+
+```c#
+[Test]
+        public void Should_consider_equals_two_ValueType_instances_that_aggregates_equivalent_SetByValue()
+        {
+            var threeCards = new ThreeCards("AS", "QD", "2H");
+            var sameThreeCards = new ThreeCards("2H", "QD", "AS");
+
+            Check.That(threeCards).IsEqualTo(sameThreeCards);
+        }
+
+        [Test]
+        public void Should_consider_Not_equals_two_badly_implemented_ValueType_instances_that_aggregates_equivalent_HashSet()
+        {
+            var threeCards = new ThreeCardsBadlyImplementedAsValueType("AS", "QD", "2H");
+            var sameThreeCards = new ThreeCardsBadlyImplementedAsValueType("2H", "QD", "AS");
+
+            Check.That(threeCards).IsNotEqualTo(sameThreeCards);
+        }
 ```
  

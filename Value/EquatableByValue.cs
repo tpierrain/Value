@@ -15,13 +15,9 @@
 // // --------------------------------------------------------------------------------------------------------------------
 namespace Value
 {
-    #region
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    #endregion
 
     /// <summary>
     /// Support a by-Value Equality and Unicity.

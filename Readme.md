@@ -22,15 +22,15 @@ __A Value Type:__
  - is __auto-validating__ (via *transactional* constructors __with business validation inside__ and throwing exception if necessary)
 
 
-### Reverse the trend! (we need more Value Types, and less Entities)
+### Reverse the trend! (we need more Value Types, and fewer Entities)
 
-An *Entity* is a object that has a changeable state (often made by combining Value Objects) for which we care about its identity. Even if the choice you make will strongly depends on your business context (*there is no silver bullet*), here is some basic samples to better grasp the difference between *Value Types* and *Entities*:
+An *Entity* is an object that has a changeable state (often made by combining Value Objects) for which we care about its identity. Whether to use an Entity or Value Object will strongly depend on your business context (*there is no silver bullet*). Here are some basic samples to better grasp the difference between *Value Types* and *Entities*:
  
- - __*Value types*__: cards of a poker hand, a speed of 10 mph, a bank note of 10 euros (unless you are working for a Central Bank which need then to trace every bank notes --> Entity), a user address
+ - __*Value types*__: cards of a poker hand, a speed of 10 mph, a bank note of 10 euros (unless you are working for a Central Bank which need then to trace every bank note --> Entity), a user address
 
  - __*Entities*__: a user account, a customer's basket with items, a customer, ...
 
-Our OO code bases are usually full of types with states and contain a very few Value Type instances.
+Our OO code bases are usually full of types with states and contain very few Value Type instances.
 DDD advises us to reverse the trend by not having *Entities* created by default, and to strongly increase our __usage of Value Types__. 
 
 This __will helps us to reduce side-effects within our OO base code__. A simple reflex, for great benefits.

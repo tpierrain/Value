@@ -85,7 +85,7 @@ __Yeah, let's focus on our business value now!__
 
  ```c#
       // when one of your ValueType aggregates a IList like this
-      private readonly IList<Card> cards = new List<Card>() { Card.Parse("QS"), Card.Parse("AD")};
+      private readonly List<Card> cards;
 
       //...
 
@@ -100,7 +100,7 @@ __Yeah, let's focus on our business value now!__
 
 ```c#
       // when one of your ValueType aggregates a Set like this
-      private readonly ISet<Card> cards = new HashSet<Card>() { Card.Parse("QS"), Card.Parse("AD")};
+      private readonly HashSet<Card> cards;
       
       //...
      

@@ -24,7 +24,7 @@ namespace Value
     /// </summary>
     /// <remarks>This latest implementation has been inspired from Scott Millett's book (Patterns, Principles, and Practices of Domain-Driven Design).</remarks>
     /// <typeparam name="T"></typeparam>
-    public abstract class EquatableByValue<T> : IEquatable<T> where T : EquatableByValue<T>
+    public abstract class EquatableByValue<T> : IEquatable<T> where T : class
     {
         private const int undefined = -1;
 
@@ -52,12 +52,13 @@ namespace Value
 
         public bool Equals(T other)
         {
-            if (other == null)
+            var otherEquatable = other as EquatableByValue<T>;
+            if (otherEquatable == null)
             {
                 return false;
             }
 
-            return this.GetAllAttributesToBeUsedForEquality().SequenceEqual(other.GetAllAttributesToBeUsedForEquality());
+            return this.GetAllAttributesToBeUsedForEquality().SequenceEqual(otherEquatable.GetAllAttributesToBeUsedForEquality());
         }
 
         public override bool Equals(object obj)

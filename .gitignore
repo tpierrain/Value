@@ -7,6 +7,7 @@
 *.sln.docstates
 
 # Build results
+Artifacts/
 Artifacts/Binaries/*.*
 Artifacts/Binaries/*.*
 Artifacts/Packages/*.*

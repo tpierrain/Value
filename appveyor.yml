@@ -1,0 +1,19 @@
+version: 1.0.0.{build}
+image: Visual Studio 2017
+branches:
+  only:
+  - master
+configuration: Release
+platform: Any CPU
+build_script:
+  - cmd: build.cmd
+build:
+  verbosity: minimal
+test: auto
+
+assembly_info:
+  patch: true
+  file: version.cs
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'

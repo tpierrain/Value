@@ -29,7 +29,7 @@ namespace Value.Tests.Samples
 
         public override string ToString()
         {
-            return string.Format("{0} - price: {1} {2}.", this.ItemName, this.Quantity, this.Currency);
+            return $"{this.ItemName} - price: {this.Quantity} {this.Currency}.";
         }
     }
 }

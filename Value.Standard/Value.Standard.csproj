@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AssemblyName>Value</AssemblyName>
+  </PropertyGroup>
+
+  <Import Project="..\Value\Value.Shared.projitems" Label="Shared" />
+
+</Project>

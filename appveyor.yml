@@ -6,7 +6,7 @@ branches:
 configuration: Release
 platform: Any CPU
 build_script:
-  - cmd: build.cmd
+  - cmd: build.cmd Release
 build:
   verbosity: minimal
 test: auto

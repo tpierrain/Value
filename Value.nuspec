@@ -13,22 +13,14 @@
     <description>Value is a pico library (or code snippets shed) to help you to easily implement Value Types (also known as Value Objects in DDD) in your C# projects without making implementation errors nor polluting your domain logic with boiler-plate code.</description>
     <summary>Add more Value types within your code base.</summary>
     <releaseNotes>New feature(s):
-
-* Support for .Net Standard (ex .Net Core)
-
-* Provide the following types: ValueType&lt;T&gt;, SetByValue&lt;T&gt;, ListByValue&lt;T&gt;
-
---------------
-
-Change(s):
-
-*
-
---------------
-
-Bug Fixe(s):
-
-*</releaseNotes>
+* Support for .Net Standard (ex .Net Core)
+* Provide the following types: ValueType&lt;T&gt;, SetByValue&lt;T&gt;, ListByValue&lt;T&gt;
+--------------
+Change(s):
+*
+--------------
+Bug Fixe(s):
+*</releaseNotes>
     <copyright>Copyright 2016-17 Thomas PIERRAIN</copyright>
     <language>en-US</language>
     <tags>DDD domain value object type tactical pattern pico library</tags>

@@ -3,15 +3,16 @@
   <UsingTask TaskName="VersionBuilding" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
     <ParameterGroup>
       <version ParameterType="System.String" Required="true"/>
-      <stream ParameterType="System.String" Required="true"/>
+      <stream ParameterType="System.String" Required="false"/>
       <fullVersion ParameterType="System.String" Output="true"/>
     </ParameterGroup>
     <Task>
       <Using Namespace="System.Text" />
       <Code Type="Fragment" Language="cs">
         <![CDATA[ 
-            var builder = new StringBuilder(version.Length+stream.Length);
-            var parts = (version+".0.0").Split('.');
+            var streamLength = (stream == null) ? 0 : stream.Length;
+            var builder = new StringBuilder(version.Length + streamLength);
+            var parts = (version + ".0.0").Split('.');
             var buildId = int.Parse(parts[3]);
             if (buildId < 100)
             {
@@ -25,7 +26,14 @@
             {
                 parts[3] = buildId.ToString("00000");
             }
-            builder.AppendFormat("{0}.{1}.{2}-{4}-{3}", parts[0], parts[1], parts[2], parts[3], stream);
+            if(streamLength == 0)
+            {
+              builder.AppendFormat("{0}.{1}.{2}.{3}", parts[0], parts[1], parts[2], parts[3]);
+            }
+            else
+            {
+              builder.AppendFormat("{0}.{1}.{2}-{4}-{3}", parts[0], parts[1], parts[2], parts[3], stream);
+            }
             fullVersion=builder.ToString();
         ]]>
       </Code>

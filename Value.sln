@@ -9,10 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Value.Tests", "Value.Tests\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44F51B3E-5774-4F04-89A6-2B125CFE67C1}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
 		BackLog.md = BackLog.md
 		build.cmd = build.cmd
 		.build\Build.proj = .build\Build.proj
+		.build\Build.tasks = .build\Build.tasks
 		Readme.md = Readme.md
 		ReleaseNoteContentToBeInsertedWithinNuspecFile.txt = ReleaseNoteContentToBeInsertedWithinNuspecFile.txt
 		Value.nuspec = Value.nuspec

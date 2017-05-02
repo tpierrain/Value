@@ -145,7 +145,7 @@ RUN ALL UNIT TESTS
       <Message Importance="high" Text="xcopy %(FilesForNuget.Identity) $(BinariesPath)\%(FilesForNuget.TargetFwk)\ /E /Y" />
       <Exec Command='xcopy "%(FilesForNuget.FullPath)" "$(BinariesPath)\%(FilesForNuget.TargetFwk)\" /E /Y' />
 	  
-      <!-- Get the version number of the main FV assembly to insert into the nuspec files -->
+      <!-- Get the version number of the main FV assembly (that has been patched by appveyor CI) to insert into the nuspec files -->
       <GetAssemblyIdentity AssemblyFiles="$(BinariesPath)\net45\$(SolutionName).dll">
         <Output TaskParameter="Assemblies" ItemName="AsmInfo" />
       </GetAssemblyIdentity>
@@ -157,6 +157,7 @@ RUN ALL UNIT TESTS
 
       <Message Importance="high" Text="[Print] PackageVersion: '$(PackageVersion)'" />
       <Message Importance="high" Text="[Print] NuspecFilePath: '$(NuspecFilePath)'" />
+      <Message Importance="high" Text="[Print] PackageStream: '$(PackageStream)'" />
 
     <VersionBuilding version ="$(PackageVersion)" stream="$(PackageStream)">
       <Output PropertyName="PrettyVersion" TaskParameter="fullVersion" />

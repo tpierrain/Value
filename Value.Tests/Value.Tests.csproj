@@ -54,7 +54,6 @@
     <Compile Include="Samples\ItemPrice.cs" />
     <Compile Include="Samples\ItemPriceWithBadImplementationForEqualityAndUnicity.cs" />
     <Compile Include="Samples\Suit.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ListByValueTests.cs" />
     <Compile Include="Samples\ThreeCardsBadlyImplementedAsValueType.cs" />
     <Compile Include="ValueTypeTests.cs" />
@@ -67,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

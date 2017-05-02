@@ -7,10 +7,10 @@
 *.sln.docstates
 
 # Build results
-Artifacts/Binaries/*.dll
-Artifacts/Binaries/*.xml
-Artifacts/Packages/
-Artifacts/Docs/
+Artifacts/Binaries/*.*
+Artifacts/Binaries/*.*
+Artifacts/Packages/*.*
+Artifacts/Docs/*.*
 TestResult.xml
 
 [Dd]ebug/

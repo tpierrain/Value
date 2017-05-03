@@ -1,10 +1,9 @@
 # Value
 
 is a pico library (or code snippets shed) to help you to __easily implement Value Types__ in your C# projects without making errors nor polluting your domain logic with boiler-plate code.
+[![Build status](https://ci.appveyor.com/api/projects/status/ju5m6t3fm2xsl0o9/branch/master?svg=true)](https://ci.appveyor.com/project/tpierrain/value/branch/master)
 
 ![Value](https://github.com/tpierrain/Value/blob/master/Value-small.jpg?raw=true)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/ju5m6t3fm2xsl0o9/branch/master?svg=true)](https://ci.appveyor.com/project/tpierrain/value/branch/master)
 
 ## Value Types?
 __Domain Driven Design (DDD)__'s *Value Object* being an oxymoron (indeed, an object has a changing state by nature), we now rather use the "*Value Type*" (instance) terminology. But the concept is the same as described within Eric Evan's Blue book.

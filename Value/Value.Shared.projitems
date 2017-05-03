@@ -9,6 +9,7 @@
     <Import_RootNamespace>Value.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DictionaryByValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EquatableByValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListByValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SetByValue.cs" />

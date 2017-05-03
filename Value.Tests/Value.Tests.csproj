@@ -46,7 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmountTests.cs" />
-    <Compile Include="Samples\SetByValueTests.cs" />
+    <Compile Include="DictionaryByValueTests.cs" />
+    <Compile Include="SetByValueTests.cs" />
     <Compile Include="Samples\ThreeCards.cs" />
     <Compile Include="Samples\Amount.cs" />
     <Compile Include="Samples\Card.cs" />

@@ -57,6 +57,7 @@
   </Target>
   
   <ItemGroup>
+    <ProjectFolder Include="$(SolutionRoot)\Value.Net40"/>  
     <ProjectFolder Include="$(SolutionRoot)\Value.Net45"/>  
     <ProjectFolder Include="$(SolutionRoot)\Value.Standard"/>  
     <ProjectFolder Include="$(SolutionRoot)\Value.Tests"/>  
@@ -131,6 +132,9 @@ RUN ALL UNIT TESTS
   <Target Name="Package" DependsOnTargets="Build; RunTests">
     <!--Folders-->
     <ItemGroup>
+      <FilesForNuget Include="$(AssemblyFileNameRoot).Net40\bin\$(Configuration)\Value.*">
+        <TargetFwk>net40</TargetFwk>
+      </FilesForNuget>
       <FilesForNuget Include="$(AssemblyFileNameRoot).Net45\bin\$(Configuration)\Value.*">
         <TargetFwk>net45</TargetFwk>
       </FilesForNuget>

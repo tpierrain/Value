@@ -3,7 +3,7 @@
   <metadata>
     <id>Value</id>
     <title>Value</title>
-    <version>1.0.0-nightly-00</version>
+    <version>1.0.0.00</version>
     <authors>Thomas PIERRAIN</authors>
     <owners>Thomas PIERRAIN</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
@@ -16,7 +16,7 @@
 
 * Support for .Net Standard (ex .Net Core)
 
-* Provide the following types: ValueType&lt;T&gt;, SetByValue&lt;T&gt;, ListByValue&lt;T&gt;
+* Provide the following helpers: ValueType&lt;T&gt;, ListByValue&lt;T&gt;, SetByValue&lt;T&gt;
 
 --------------
 
@@ -34,6 +34,8 @@ Bug Fixe(s):
     <tags>DDD domain value object type tactical pattern pico library</tags>
   </metadata>
   <files>
+    <!-- .NET 4.0 -->
+    <file src="Artifacts\Binaries\net40\Value.dll" target="lib\net40\Value.dll" />
     <!-- .NET 4.5 -->
     <file src="Artifacts\Binaries\net45\Value.dll" target="lib\net45\Value.dll" />
     <!-- .Net standard 1_3 -->

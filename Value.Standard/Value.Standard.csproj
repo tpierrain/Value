@@ -4,6 +4,7 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <AssemblyName>Value</AssemblyName>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <RootNamespace>Value</RootNamespace>
   </PropertyGroup>
   
   <Import Project="..\Value\Value.Shared.projitems" Label="Shared" />

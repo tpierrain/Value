@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://raw.githubusercontent.com/tpierrain/Value/master/Value-icon.jpg</iconUrl>
     <description>Value is a pico library (or code snippets shed) to help you to easily implement Value Types (also known as Value Objects in DDD) in your C# projects without making implementation errors nor polluting your domain logic with boiler-plate code.</description>
-    <summary>Add more Value types within your code base.</summary>
+    <summary>Less Entities, more Value Types with easy-to-use and lightweight helpers.</summary>
     <releaseNotes>New feature(s):
 
 * Support for .Net Standard (ex .Net Core)
@@ -29,7 +29,7 @@ Change(s):
 Bug Fixe(s):
 
 *</releaseNotes>
-    <copyright>Copyright 2016-17 Thomas PIERRAIN</copyright>
+    <copyright>Copyright 2016-2017 Thomas PIERRAIN</copyright>
     <language>en-US</language>
     <tags>DDD domain value object type tactical pattern pico library</tags>
   </metadata>

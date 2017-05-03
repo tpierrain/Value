@@ -1,6 +1,6 @@
 New feature(s):
 * Support for .Net Standard (ex .Net Core)
-* Provide the following types: ValueType&lt;T&gt;, SetByValue&lt;T&gt;, ListByValue&lt;T&gt;
+* Provide the following helpers: ValueType&lt;T&gt;, ListByValue&lt;T&gt;, SetByValue&lt;T&gt;
 
 --------------
 

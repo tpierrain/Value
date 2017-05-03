@@ -1,7 +1,8 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ju5m6t3fm2xsl0o9/branch/master?svg=true)](https://ci.appveyor.com/project/tpierrain/value/branch/master)
+
 # Value
 
 is a pico library (or code snippets shed) to help you to __easily implement Value Types__ in your C# projects without making errors nor polluting your domain logic with boiler-plate code.
-[![Build status](https://ci.appveyor.com/api/projects/status/ju5m6t3fm2xsl0o9/branch/master?svg=true)](https://ci.appveyor.com/project/tpierrain/value/branch/master)
 
 ![Value](https://github.com/tpierrain/Value/blob/master/Value-small.jpg?raw=true)
 

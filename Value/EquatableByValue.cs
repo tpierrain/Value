@@ -23,7 +23,7 @@ namespace Value
     /// Support a by-Value Equality and Unicity.
     /// </summary>
     /// <remarks>This latest implementation has been inspired from Scott Millett's book (Patterns, Principles, and Practices of Domain-Driven Design).</remarks>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type of the elements.</typeparam>
     public abstract class EquatableByValue<T> : IEquatable<T> where T : class
     {
         private const int undefined = -1;

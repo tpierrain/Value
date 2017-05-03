@@ -13,12 +13,12 @@
 // //     limitations under the License.b 
 // // </copyright>
 // // --------------------------------------------------------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Value
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// Support a by-Value Equality and Unicity.
     /// </summary>
@@ -26,9 +26,9 @@ namespace Value
     /// <typeparam name="T">Type of the elements.</typeparam>
     public abstract class EquatableByValue<T> : IEquatable<T> where T : class
     {
-        private const int undefined = -1;
+        private const int Undefined = -1;
 
-        private volatile int hashCode = undefined;
+        private volatile int hashCode = Undefined;
 
         public static bool operator ==(EquatableByValue<T> x, EquatableByValue<T> y)
         {
@@ -58,7 +58,7 @@ namespace Value
                 return false;
             }
 
-            return this.GetAllAttributesToBeUsedForEquality().SequenceEqual(otherEquatable.GetAllAttributesToBeUsedForEquality());
+            return GetAllAttributesToBeUsedForEquality().SequenceEqual(otherEquatable.GetAllAttributesToBeUsedForEquality());
         }
 
         public override bool Equals(object obj)
@@ -75,36 +75,36 @@ namespace Value
                 return false;
             }
 
-            return this.Equals(other);
+            return Equals(other);
         }
 
         public override int GetHashCode()
         {
-            return this.GetHashCodeImpl();
+            return GetHashCodeImpl();
         }
 
         protected abstract IEnumerable<object> GetAllAttributesToBeUsedForEquality();
 
         protected virtual void ResetHashCode()
         {
-            this.hashCode = undefined;
+            hashCode = Undefined;
         }
 
         private int GetHashCodeImpl()
         {
-            if (this.hashCode == undefined)
+            if (hashCode == Undefined)
             {
                 var code = 0;
 
-                foreach (var attribute in this.GetAllAttributesToBeUsedForEquality())
+                foreach (var attribute in GetAllAttributesToBeUsedForEquality())
                 {
                     code = (code * 397) ^ (attribute == null ? 0 : attribute.GetHashCode());
                 }
 
-                this.hashCode = code;
+                hashCode = code;
             }
 
-            return this.hashCode;
+            return hashCode;
         }
     }
 }

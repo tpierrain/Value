@@ -69,7 +69,7 @@ namespace Value
         {
             var other = obj as SetByValue<T>;
             if (other == null)
-            {
+            { 
                 return false;
             }
 

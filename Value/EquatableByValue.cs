@@ -26,9 +26,14 @@ namespace Value
     /// <typeparam name="T">Type of the elements.</typeparam>
     public abstract class EquatableByValue<T> : IEquatable<T> where T : class
     {
-        private const int Undefined = -1;
+        protected const int Undefined = -1;
 
-        private volatile int hashCode = Undefined;
+        protected volatile int hashCode = Undefined;
+
+        protected void ResetHashCode()
+        {
+            hashCode = Undefined;
+        }
 
         public static bool operator ==(EquatableByValue<T> x, EquatableByValue<T> y)
         {
@@ -58,9 +63,9 @@ namespace Value
                 return false;
             }
 
-            return GetAllAttributesToBeUsedForEquality().SequenceEqual(otherEquatable.GetAllAttributesToBeUsedForEquality());
+            return EqualsImpl(otherEquatable);
         }
-
+        
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -78,20 +83,17 @@ namespace Value
             return Equals(other);
         }
 
-        public override int GetHashCode()
-        {
-            return GetHashCodeImpl();
-        }
-
         protected abstract IEnumerable<object> GetAllAttributesToBeUsedForEquality();
 
-        protected virtual void ResetHashCode()
+        protected virtual bool EqualsImpl(EquatableByValue<T> otherEquatable)
         {
-            hashCode = Undefined;
+            // Implementation where orders of the elements matters.
+            return GetAllAttributesToBeUsedForEquality().SequenceEqual(otherEquatable.GetAllAttributesToBeUsedForEquality());
         }
 
-        private int GetHashCodeImpl()
+        public override int GetHashCode()
         {
+            // Implementation where orders of the elements matters.
             if (hashCode == Undefined)
             {
                 var code = 0;
@@ -106,5 +108,6 @@ namespace Value
 
             return hashCode;
         }
+
     }
 }

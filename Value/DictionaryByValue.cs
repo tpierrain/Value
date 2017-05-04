@@ -25,7 +25,7 @@ namespace Value.Shared
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="K">The type of keys in the dictionary.</typeparam>
     /// <typeparam name="V">The type of values in the dictionary.</typeparam>
-    public class DictionaryByValue<K, V> : EquatableByValue<DictionaryByValue<K, V>>, IDictionary<K, V>
+    public class DictionaryByValue<K, V> : EquatableByValueWithoutOrder<DictionaryByValue<K, V>>, IDictionary<K, V>
     {
         private readonly IDictionary<K, V> dictionary;
 
@@ -40,6 +40,17 @@ namespace Value.Shared
             {
                 yield return kv;
             }
+        }
+
+        protected override bool EqualsWithoutOrderImpl(EquatableByValueWithoutOrder<DictionaryByValue<K, V>> obj)
+        {
+            var other = obj as DictionaryByValue<K, V>;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         IEnumerator IEnumerable.GetEnumerator()

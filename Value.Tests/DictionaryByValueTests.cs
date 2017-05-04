@@ -13,7 +13,7 @@ namespace Value.Tests
     public class DictionaryByValueTests
     {
         [Test]
-        public void Should_consider_Equals_two_instances_with_same_elements_inserted_in_same_order()
+        public void Should_consider_two_instances_with_same_elements_inserted_in_same_order_Equals()
         {
             var dico1 = new Dictionary<int, string>() { {1, "uno" }, { 4, "quatro" }, { 3, "tres" } };
             var dico2 = new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } };
@@ -26,7 +26,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_consider_Equals_two_instances_with_same_elements_inserted_in_different_order()
+        public void Should_consider_two_instances_with_same_elements_inserted_in_different_order_Equals()
         {
             var dico1 = new Dictionary<int, string>() { {1, "uno" }, { 4, "quatro" }, { 3, "tres" } };
             var dico2 = new Dictionary<int, string>() { { 1, "uno" }, { 3, "tres" }, { 4, "quatro" } };

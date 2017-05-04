@@ -24,11 +24,25 @@ namespace Value
     /// </summary>
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="T">Type of the listed items.</typeparam>
-    public class SetByValue<T> : ISet<T>
+    public class SetByValue<T> : EquatableByValueWithoutOrder<T>, ISet<T> where T : class
     {
         private readonly ISet<T> hashSet;
 
-        private int? hashCode;
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
+        {
+            return (IEnumerable<object>)this.hashSet;
+        }
+
+        protected override bool EqualsWithoutOrderImpl(EquatableByValueWithoutOrder<T> obj)
+        {
+            var other = obj as SetByValue<T>;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.hashSet.SetEquals(other);
+        }
 
         public SetByValue(ISet<T> hashSet)
         {
@@ -45,13 +59,13 @@ namespace Value
 
         public void Add(T item)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.hashSet.Add(item);
         }
 
         public void Clear()
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.hashSet.Clear();
         }
 
@@ -65,20 +79,9 @@ namespace Value
             this.hashSet.CopyTo(array, arrayIndex);
         }
 
-        public override bool Equals(object obj)
-        {
-            var other = obj as SetByValue<T>;
-            if (other == null)
-            { 
-                return false;
-            }
-
-            return this.hashSet.SetEquals(other);
-        }
-
         public void ExceptWith(IEnumerable<T> other)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.hashSet.ExceptWith(other);
         }
 
@@ -87,35 +90,9 @@ namespace Value
             return this.hashSet.GetEnumerator();
         }
 
-        public override int GetHashCode()
-        {
-            if (this.hashCode == null)
-            {
-                var code = 0;
-
-                // Two instances with same elements added in different order must return the same hashcode
-                // Let's compute and sort hashcodes of all elements (always in the same order)
-                var sortedHashCodes = new SortedSet<int>();
-                foreach (var element in this.hashSet)
-                {
-                    sortedHashCodes.Add(element.GetHashCode());
-                }
-
-                foreach (var elementHashCode in sortedHashCodes)
-                {
-                    code = (code * 397) ^ elementHashCode;
-                }
-
-                // Cache the result in a field
-                this.hashCode = code;
-            }
-
-            return this.hashCode.Value;
-        }
-
         public void IntersectWith(IEnumerable<T> other)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.hashSet.IntersectWith(other);
         }
 
@@ -146,7 +123,7 @@ namespace Value
 
         public bool Remove(T item)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             return this.hashSet.Remove(item);
         }
 
@@ -157,30 +134,25 @@ namespace Value
 
         public void SymmetricExceptWith(IEnumerable<T> other)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.hashSet.SymmetricExceptWith(other);
         }
 
         public void UnionWith(IEnumerable<T> other)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             this.hashSet.UnionWith(other);
         }
 
         bool ISet<T>.Add(T item)
         {
-            this.ResetHashCode();
+            base.ResetHashCode();
             return this.hashSet.Add(item);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)this.hashSet).GetEnumerator();
-        }
-
-        protected virtual void ResetHashCode()
-        {
-            this.hashCode = null;
         }
     }
 }

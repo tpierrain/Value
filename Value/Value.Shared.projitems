@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DictionaryByValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EquatableByValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EquatableByValueWithoutOrder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListByValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SetByValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValueType.cs" />

@@ -53,8 +53,10 @@ namespace Value.Tests
         [Test]
         public void Should_consider_an_instance_not_equals_with_SetByValue_instance()
         {
-            var dico = new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } };
-            // var set = new SetByValue<KeyValuePair<int, string>>() ;
+            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } });
+            var set = new SetByValue<KeyValuePair<int, string>>() { new KeyValuePair<int, string>(1, "uno"), new KeyValuePair<int, string>(4, "quatro"), new KeyValuePair<int, string>(3, "tres") };
+
+            Check.That(dico).IsNotEqualTo(set);
         }
     }
 }

@@ -10,7 +10,7 @@ The *Value* library:
 
 1. __must be very easy and straightforward to use__ (must follow [the pit-of-success](https://blog.codinghorror.com/falling-into-the-pit-of-success/))
 2. __must not add accidental complexity to the value types of the developers using the library__ (called *Devs* hereafter). Thus, it must not force its users to add boiler-plate or complicated code (like Equality or Hashcode implementations) in their own Value Types.
-	- accidental complexity means here plumbering or technical code
+	- *accidental complexity* means plumbering or technical code that has nothing to deal with the domain logic
 3. __must be available in most of the .NET platforms and versions__ ( >= .NET 4.0, >= dotnet standard 1.3 and thus dotnet core compliant)
 
 ## Internal-design drivers

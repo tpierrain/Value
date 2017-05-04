@@ -85,11 +85,6 @@ namespace Value
                 return false;
             }
 
-            if (ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
             return Equals(other);
         }
 

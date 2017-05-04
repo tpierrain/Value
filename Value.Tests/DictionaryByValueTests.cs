@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,6 +96,95 @@ namespace Value.Tests
             dico.Clear();
             currentHashcode = dico.GetHashCode();
             Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
+        }
+
+        [Test]
+        public void Should_properly_expose_Contains()
+        {
+            var firstDate = DateTime.ParseExact("2017-05-04", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            var secondDate = DateTime.ParseExact("2017-05-27", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            var dico = new DictionaryByValue<DateTime, string>(new Dictionary<DateTime, string>() { { firstDate, "uno" }, { secondDate, "quatro" } });
+
+            Check.That(dico.Contains(new KeyValuePair<DateTime, string>(firstDate, "uno")));
+        }
+
+        [Test]
+        public void Should_properly_expose_ContainsKey()
+        {
+            var firstDate = DateTime.ParseExact("2017-05-04", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            var secondDate = DateTime.ParseExact("2017-05-27", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            var missingDate = DateTime.ParseExact("1974-12-24", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            var dico = new DictionaryByValue<DateTime, string>(new Dictionary<DateTime, string>() { { firstDate, "uno" }, { secondDate, "quatro" } });
+
+            Check.That(dico.ContainsKey(secondDate)).IsTrue();
+            Check.That(dico.ContainsKey(missingDate)).IsFalse();
+        }
+
+        [Test]
+        public void Should_properly_expose_Count()
+        {
+            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
+
+            Check.That(dico.Count).IsEqualTo(2);
+        }
+
+        [Test]
+        public void Should_properly_expose_Keys()
+        {
+            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
+
+            Check.That(dico.Keys).ContainsExactly(1, 2);
+        }
+
+        [Test]
+        public void Should_properly_expose_Values()
+        {
+            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
+
+            Check.That(dico.Values).ContainsExactly("uno", "quatro");
+        }
+
+        [Test]
+        public void Should_properly_expose_Indexer()
+        {
+            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
+
+            Check.That(dico[1]).IsEqualTo("uno");
+            
+            dico[42] = "quarenta y dos";
+            Check.That(dico[42]).IsEqualTo("quarenta y dos");
+        }
+
+        [Test]
+        public void Should_properly_expose_TryGetValue()
+        {
+            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
+
+            string result;
+            dico.TryGetValue(1, out result);
+            Check.That(result).IsEqualTo("uno");
+        }
+
+        [Test]
+        public void Should_properly_expose_CopyTo()
+        {
+            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
+
+            KeyValuePair<int, string>[] array = new KeyValuePair<int, string>[2];
+            dico.CopyTo(array, 0);
+
+            Check.That(array).ContainsExactly(new KeyValuePair<int, string>(1, "uno"), new KeyValuePair<int, string>(2, "quatro"));
+        }
+
+        [Test]
+        public void Should_properly_expose_IsReadOnly()
+        {
+            var dictionary = new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } };
+            var wrappedDictionary = new DictionaryByValue<int, string>(dictionary);
+
+            Check.That(wrappedDictionary.IsReadOnly).IsEqualTo(((ICollection<KeyValuePair<int, string>>)dictionary).IsReadOnly);
         }
     }
 }

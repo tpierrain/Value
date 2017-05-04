@@ -35,33 +35,37 @@ namespace Value.Tests
         public void Should_change_its_hashcode_everytime_the_list_is_updated()
         {
             var list = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
-            var firstHashCode = list.GetHashCode();
 
+            var previousHashcode = list.GetHashCode();
             list.Add(Card.Parse("3H")); // ---update the list ---
-            var afterAddHash = list.GetHashCode();
-            Check.That(firstHashCode).IsNotEqualTo(afterAddHash);
+            var currentHashcode = list.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
 
+
+            previousHashcode = list.GetHashCode();
             list.Remove(Card.Parse("QC")); // ---update the list ---
-            var afterRemoveHash = list.GetHashCode();
-            Check.That(afterRemoveHash).IsNotEqualTo(afterAddHash);
+            currentHashcode = list.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
 
+            previousHashcode = list.GetHashCode();
             list.Clear(); // ---update the list ---
-            var afterClearHash = list.GetHashCode();
-            Check.That(afterClearHash).IsNotEqualTo(afterRemoveHash);
-            Check.That(list.Count).IsZero();
+            currentHashcode = list.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
 
+            previousHashcode = list.GetHashCode();
             list.Insert(0, Card.Parse("AS")); // ---update the list ---
-            Check.That(list.Count).IsEqualTo(1);
-            var afterInsertHash = list.GetHashCode();
-            Check.That(afterInsertHash).IsNotEqualTo(afterClearHash);
+            currentHashcode = list.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
 
+            previousHashcode = list.GetHashCode();
             list[0] = Card.Parse("QH");
-            var afterIndexerHash = list.GetHashCode();
-            Check.That(afterIndexerHash).IsNotEqualTo(afterInsertHash);
+            currentHashcode = list.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
 
+            previousHashcode = list.GetHashCode();
             list.RemoveAt(0);
-            var afterRemoveAtHash = list.GetHashCode();
-            Check.That(afterRemoveAtHash).IsNotEqualTo(afterIndexerHash);
+            currentHashcode = list.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
         }
 
         [Test]
@@ -95,6 +99,16 @@ namespace Value.Tests
             var listB = new ListByValue<object>() { secondElement, firstElement };
 
             Check.That(listB).IsNotEqualTo(listA).And.ContainsExactly(secondElement, firstElement);
+        }
+
+        [Test]
+        public void Should_properly_expose_Count()
+        {
+            var list = new ListByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
+            Check.That(list.Count).IsEqualTo(2);
+
+            list.Add(Card.Parse("4D"));
+            Check.That(list.Count).IsEqualTo(3);
         }
 
         [Test]

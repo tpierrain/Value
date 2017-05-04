@@ -121,7 +121,7 @@ namespace Value.Shared
 
         public V this[K key]
         {
-            get { return dictionary[key]; }
+            get => dictionary[key];
             set
             {
                 base.ResetHashCode();

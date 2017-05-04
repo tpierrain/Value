@@ -8,7 +8,7 @@ namespace Value
     /// to the Unicity/Equality doesn't matter.
     /// </summary>
     /// <typeparam name="T">Type of the elements.</typeparam>
-    public abstract class EquatableByValueWithoutOrder<T> : EquatableByValue<T> where T : class
+    public abstract class EquatableByValueWithoutOrder<T> : EquatableByValue<T>
     {
         protected override bool EqualsImpl(EquatableByValue<T> other)
         {

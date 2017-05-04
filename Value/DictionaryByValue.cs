@@ -13,6 +13,8 @@
 // //     limitations under the License.b 
 // // </copyright>
 // // --------------------------------------------------------------------------------------------------------------------
+using System.Linq;
+
 namespace Value.Shared
 {
     using System.Collections;
@@ -50,7 +52,8 @@ namespace Value.Shared
                 return false;
             }
 
-            return true;
+            return !this.dictionary.Except(other).Any();
+            // return this.dictionary.OrderBy(x => x.Key).SequenceEqual(other.OrderBy(x => x.Key));
         }
 
         IEnumerator IEnumerable.GetEnumerator()

@@ -24,7 +24,7 @@ namespace Value
     /// </summary>
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="T">Type of the listed items.</typeparam>
-    public class SetByValue<T> : EquatableByValueWithoutOrder<T>, ISet<T> where T : class
+    public class SetByValue<T> : EquatableByValueWithoutOrder<T>, ISet<T>
     {
         private readonly ISet<T> hashSet;
 

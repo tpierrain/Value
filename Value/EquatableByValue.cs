@@ -24,7 +24,7 @@ namespace Value
     /// </summary>
     /// <remarks>This latest implementation has been inspired from Scott Millett's book (Patterns, Principles, and Practices of Domain-Driven Design).</remarks>
     /// <typeparam name="T">Type of the elements.</typeparam>
-    public abstract class EquatableByValue<T> : IEquatable<T> where T : class
+    public abstract class EquatableByValue<T> : IEquatable<T>
     {
         protected const int Undefined = -1;
 
@@ -73,7 +73,17 @@ namespace Value
                 return false;
             }
 
-            var other = obj as T;
+            T other;
+
+            try
+            {
+                // we use a static cast here since we can't use the 'as' operator for structs and other value type primitives
+                other = (T)obj;
+            }
+            catch (InvalidCastException e)
+            {
+                return false;
+            }
 
             if (ReferenceEquals(other, null))
             {

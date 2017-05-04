@@ -20,7 +20,7 @@ namespace Value
     ///     All you have to do is to implement the abstract methods: <see cref="EquatableByValue{T}.GetAllAttributesToBeUsedForEquality"/>
     /// </summary>
     /// <typeparam name="T">Domain type to be 'turned' into a Value Type.</typeparam>
-    public abstract class ValueType<T> : EquatableByValue<T> where T : class
+    public abstract class ValueType<T> : EquatableByValue<T>
     {
     }
 }

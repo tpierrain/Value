@@ -9,23 +9,23 @@
 The *Value* library:
 
 1. __must be very easy and straightforward to use__ (must follow [the pit-of-success](https://blog.codinghorror.com/falling-into-the-pit-of-success/))
-2. __must not add accidental complexity to the value types of the developers using the library__ (called *Devs* hereafter). Thus, it must not force its users to add boiler-plate or complicated code (like Equality or Hashcode implementations) in their own Value Types.
-	- *accidental complexity* means plumbering or technical code that has nothing to deal with the domain logic
-3. __must be available in most of the .NET platforms and versions__ ( >= .NET 4.0, >= dotnet standard 1.3 and thus dotnet core compliant)
+2. __must not add accidental complexity(1) to the value types of the developers using the library__ (called *Devs* hereafter). Thus, it must not force the Devs to add boiler-plate or complicated code (like Equality or Hashcode implementations) in their own Value Types.
+	- (1) *accidental complexity* means plumbering or technical code that has nothing to deal with the domain logic
+3. __packages must be available for most of the .NET platforms and versions__ ( >= .NET 4.0, >= dotnet standard 1.3 and thus dotnet core compliant)
 
 ## Internal-design drivers
 
 Here are some drivers and insights about the implementation design of the *Value* library:
 
 - 100% tests coverage for the entire library
-- __*ByValue* collections (e.g. ListByValue<T>, DictionaryByValue<T>,..) are NOT *ValueTypes*__ (since we can modify them). Reason why they don't inherits from ValueType<T>
+- __*ByValue* collections (e.g. ListByValue<T>, DictionaryByValue<T>,..) are NOT *ValueTypes*__ (since we can modify them). Reason why they must NOT inherit from ValueType<T>
 - ValueType<T> and all *ByValue* collections __MUST accept struct as well as reference types__ (i.e. classes)
-- All *ByValue* collections should behave as the collection they are decorating/wrapping (by delegation). They must derived from it.
+- All *ByValue* collections should behave the same way as the collection they are decorating/wrapping (by delegation). Reason why they are derived from them.
 - Hashcode of EquatableByValue types must not be computed more than once (thus be cached) for performance purpose. Nonetheless, the resulted hashcode of all the *ByValue* collections must be reset every time the collection is changed (e.g. Add, Remove, etc).
 
 - TODO: All the implementation must follow the StyleCop rules provided with the project
 - Whenever possible (and if it doesn't violate the External design drivers for the library), __foster *Aggregation* over *Inheritance*__. If you can't, try to minimize the level of inheritance.
-- All implementation types must be easily copied-pasted for those that want to use the library for a .NET version that we don't cover yet.
+- All implementation types should be easily copied-pasted for those that want to use the library in a .NET platform or version that aren't cover yet by *Value*.
 
 
 ## Misc implementation details/insights

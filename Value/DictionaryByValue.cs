@@ -67,11 +67,13 @@ namespace Value.Shared
 
         public void Add(KeyValuePair<K, V> item)
         {
+            base.ResetHashCode();
             dictionary.Add(item);
         }
 
         public void Clear()
         {
+            base.ResetHashCode();
             dictionary.Clear();
         }
 
@@ -87,6 +89,7 @@ namespace Value.Shared
 
         public bool Remove(KeyValuePair<K, V> item)
         {
+            base.ResetHashCode();
             return dictionary.Remove(item);
         }
 
@@ -101,11 +104,13 @@ namespace Value.Shared
 
         public void Add(K key, V value)
         {
+            base.ResetHashCode();
             dictionary.Add(key, value);
         }
 
         public bool Remove(K key)
         {
+            base.ResetHashCode();
             return dictionary.Remove(key);
         }
 
@@ -114,7 +119,15 @@ namespace Value.Shared
             return dictionary.TryGetValue(key, out value);
         }
 
-        public V this[K key] { get => dictionary[key]; set => dictionary[key] = value; }
+        public V this[K key]
+        {
+            get { return dictionary[key]; }
+            set
+            {
+                base.ResetHashCode();
+                dictionary[key] = value;
+            }
+        }
 
         public ICollection<K> Keys => dictionary.Keys;
 

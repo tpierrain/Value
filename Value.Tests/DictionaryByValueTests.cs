@@ -58,5 +58,42 @@ namespace Value.Tests
 
             Check.That(dico).IsNotEqualTo(set);
         }
+
+        [Test]
+        public void Should_change_its_hashcode_everytime_the_dictionary_is_updated()
+        {
+            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } });
+
+            var previousHashcode = dico.GetHashCode();
+            dico.Add(79, "Setenta y nueve");
+            var currentHashcode = dico.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
+
+            previousHashcode = dico.GetHashCode();
+            dico.Remove(79);
+            currentHashcode = dico.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
+
+            previousHashcode = dico.GetHashCode();
+            var keyValuePair = new KeyValuePair<int, string>(42, "quarenta y dos");
+            dico.Add(keyValuePair);
+            currentHashcode = dico.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
+
+            previousHashcode = dico.GetHashCode();
+            dico.Remove(keyValuePair);
+            currentHashcode = dico.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
+
+            previousHashcode = dico.GetHashCode();
+            dico[33] = "trenta y tres";
+            currentHashcode = dico.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
+
+            previousHashcode = dico.GetHashCode();
+            dico.Clear();
+            currentHashcode = dico.GetHashCode();
+            Check.That(currentHashcode).IsNotEqualTo(previousHashcode);
+        }
     }
 }

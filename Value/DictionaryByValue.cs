@@ -53,7 +53,6 @@ namespace Value.Shared
             }
 
             return !this.dictionary.Except(other).Any();
-            // return this.dictionary.OrderBy(x => x.Key).SequenceEqual(other.OrderBy(x => x.Key));
         }
 
         IEnumerator IEnumerable.GetEnumerator()

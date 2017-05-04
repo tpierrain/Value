@@ -1,6 +1,6 @@
 New feature(s):
 * Support for .Net Standard (ex .Net Core), .NET 4.0 and .NET 4.5
-* Provide the following helpers: ValueType&lt;T&gt;, ListByValue&lt;T&gt;, SetByValue&lt;T&gt;
+* Add support for Dictionary with the new DictionaryByValue&lt;T&gt; decorator.
 
 --------------
 

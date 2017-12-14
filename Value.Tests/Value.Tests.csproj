@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AmountTests.cs" />
     <Compile Include="DictionaryByValueTests.cs" />
+    <Compile Include="EqualByValuesTest.cs" />
     <Compile Include="SetByValueTests.cs" />
     <Compile Include="Samples\ThreeCards.cs" />
     <Compile Include="Samples\Amount.cs" />
@@ -66,10 +67,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

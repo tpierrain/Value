@@ -36,7 +36,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Value.snk.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Value.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -56,6 +56,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Value.snk" />
     <None Include="Value.snk.pfx" />
   </ItemGroup>
   <Import Project="..\Value\Value.Shared.projitems" Label="Shared" />

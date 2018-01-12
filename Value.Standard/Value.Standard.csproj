@@ -6,7 +6,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <RootNamespace>Value</RootNamespace>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Value.snk.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Value.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   

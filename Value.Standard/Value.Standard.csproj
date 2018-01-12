@@ -5,6 +5,9 @@
     <AssemblyName>Value</AssemblyName>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <RootNamespace>Value</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Value.snk.pfx</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
   
   <Import Project="..\Value\Value.Shared.projitems" Label="Shared" />

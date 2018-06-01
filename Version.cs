@@ -14,7 +14,7 @@
 using System.Reflection;
 
 [assembly: AssemblyProduct("Value")]
-[assembly: AssemblyCopyright("Copyright © Thomas PIERRAIN 2016")]
+[assembly: AssemblyCopyright("Copyright © Thomas PIERRAIN 2016-2018")]
 [assembly: AssemblyCompany("Thomas PIERRAIN")]
 
 // Version information for an assembly consists of the following four values:

@@ -12,10 +12,10 @@ using Value.Shared;
 namespace Value.Tests
 {
     [TestFixture]
-    public class DictionaryByValueTests
+    public class DictionaryByValueShould
     {
         [Test]
-        public void Should_consider_two_instances_with_same_elements_inserted_in_same_order_Equals()
+        public void Consider_two_instances_with_same_elements_inserted_in_same_order_Equals()
         {
             var dico1 = new Dictionary<int, string>() { {1, "uno" }, { 4, "quatro" }, { 3, "tres" } };
             var dico2 = new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } };
@@ -28,7 +28,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_consider_two_instances_with_same_elements_inserted_in_different_order_Equals()
+        public void Consider_two_instances_with_same_elements_inserted_in_different_order_Equals()
         {
             var dico1 = new Dictionary<int, string>() { {1, "uno" }, { 4, "quatro" }, { 3, "tres" } };
             var dico2 = new Dictionary<int, string>() { { 1, "uno" }, { 3, "tres" }, { 4, "quatro" } };
@@ -41,7 +41,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_consider_two_instances_with_different_elements_nott_Equals()
+        public void Consider_two_instances_with_different_elements_not_Equals()
         {
             var dico1 = new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } };
             var dico2 = new Dictionary<int, string>() { { 1, "uno" }, { 79, "setenta y nueve" }, { 4, "quatro" } };
@@ -53,7 +53,19 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_consider_an_instance_not_equals_with_SetByValue_instance()
+        public void Consider_two_instances_with_same_integer_elements_Equals()
+        {
+            var dico1 = new Dictionary<int, int>() { { 1, 1 }, { 4, 4 }, { 3, 3 } };
+            var dico2 = new Dictionary<int, int>() { { 1, 1 }, { 4, 4 }, { 3, 3 } };
+
+            var byValue1 = new DictionaryByValue<int, int>(dico1);
+            var byValue2 = new DictionaryByValue<int, int>(dico2);
+
+            Check.That(byValue1).IsEqualTo(byValue2);
+        }
+
+        [Test]
+        public void Consider_an_instance_not_equals_with_SetByValue_instance()
         {
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } });
             var set = new SetByValue<KeyValuePair<int, string>>() { new KeyValuePair<int, string>(1, "uno"), new KeyValuePair<int, string>(4, "quatro"), new KeyValuePair<int, string>(3, "tres") };
@@ -62,7 +74,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_change_its_hashcode_everytime_the_dictionary_is_updated()
+        public void Change_its_hashcode_everytime_the_dictionary_is_updated()
         {
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } });
 
@@ -99,7 +111,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_Contains()
+        public void Properly_expose_Contains()
         {
             var firstDate = DateTime.ParseExact("2017-05-04", "yyyy-MM-dd", CultureInfo.InvariantCulture);
             var secondDate = DateTime.ParseExact("2017-05-27", "yyyy-MM-dd", CultureInfo.InvariantCulture);
@@ -110,7 +122,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_ContainsKey()
+        public void Properly_expose_ContainsKey()
         {
             var firstDate = DateTime.ParseExact("2017-05-04", "yyyy-MM-dd", CultureInfo.InvariantCulture);
             var secondDate = DateTime.ParseExact("2017-05-27", "yyyy-MM-dd", CultureInfo.InvariantCulture);
@@ -123,7 +135,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_Count()
+        public void Properly_expose_Count()
         {
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
 
@@ -131,7 +143,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_Keys()
+        public void Properly_expose_Keys()
         {
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
 
@@ -139,7 +151,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_Values()
+        public void Properly_expose_Values()
         {
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
 
@@ -147,7 +159,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_Indexer()
+        public void Properly_expose_Indexer()
         {
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
 
@@ -158,7 +170,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_TryGetValue()
+        public void Properly_expose_TryGetValue()
         {
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
 
@@ -168,7 +180,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_CopyTo()
+        public void Properly_expose_CopyTo()
         {
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } });
 
@@ -179,7 +191,7 @@ namespace Value.Tests
         }
 
         [Test]
-        public void Should_properly_expose_IsReadOnly()
+        public void Properly_expose_IsReadOnly()
         {
             var dictionary = new Dictionary<int, string>() { { 1, "uno" }, { 2, "quatro" } };
             var wrappedDictionary = new DictionaryByValue<int, string>(dictionary);

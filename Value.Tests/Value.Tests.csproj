@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AmountTests.cs" />
-    <Compile Include="DictionaryByValueTests.cs" />
-    <Compile Include="SetByValueTests.cs" />
+    <Compile Include="AmountShould.cs" />
+    <Compile Include="DictionaryByValueShould.cs" />
+    <Compile Include="SetByValueShould.cs" />
     <Compile Include="Samples\ThreeCards.cs" />
     <Compile Include="Samples\Amount.cs" />
     <Compile Include="Samples\Card.cs" />
@@ -55,9 +55,9 @@
     <Compile Include="Samples\ItemPrice.cs" />
     <Compile Include="Samples\ItemPriceWithBadImplementationForEqualityAndUnicity.cs" />
     <Compile Include="Samples\Suit.cs" />
-    <Compile Include="ListByValueTests.cs" />
+    <Compile Include="ListByValueShould.cs" />
     <Compile Include="Samples\ThreeCardsBadlyImplementedAsValueType.cs" />
-    <Compile Include="ValueTypeTests.cs" />
+    <Compile Include="ValueTypeShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Value.Net45\Value.Net45.csproj">
@@ -70,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -27,7 +27,7 @@ namespace Value
 
         public override int GetHashCode()
         {
-            if (base.hashCode == Undefined)
+            if (base.HashCode == Undefined)
             {
                 var code = 0;
 
@@ -46,10 +46,10 @@ namespace Value
                 }
 
                 // Cache the result in a field
-                this.hashCode = code;
+                this.HashCode = code;
             }
 
-            return this.hashCode;
+            return this.HashCode;
         }
     }
 }

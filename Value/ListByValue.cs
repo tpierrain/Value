@@ -13,6 +13,9 @@
 // //     limitations under the License.b 
 // // </copyright>
 // // --------------------------------------------------------------------------------------------------------------------
+
+using System.Linq;
+
 namespace Value
 {
     using System.Collections;
@@ -43,7 +46,7 @@ namespace Value
 
         public T this[int index]
         {
-            get { return this.list[index]; }
+            get => this.list[index];
             set
             {
                 this.ResetHashCode();
@@ -108,7 +111,7 @@ namespace Value
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return (IEnumerable<object>)this.list;
+            return  this.list.Cast<object>();
         }
     }
 }

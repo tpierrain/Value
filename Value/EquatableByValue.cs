@@ -28,21 +28,21 @@ namespace Value
     {
         protected const int Undefined = -1;
 
-        protected volatile int hashCode = Undefined;
+        protected volatile int HashCode = Undefined;
 
         protected void ResetHashCode()
         {
-            hashCode = Undefined;
+            HashCode = Undefined;
         }
 
         public static bool operator ==(EquatableByValue<T> x, EquatableByValue<T> y)
         {
-            if (ReferenceEquals(x, null) && ReferenceEquals(y, null))
+            if (x is null && y is null)
             {
                 return true;
             }
 
-            if (ReferenceEquals(x, null) || ReferenceEquals(y, null))
+            if (x is null || y is null)
             {
                 return false;
             }
@@ -99,7 +99,7 @@ namespace Value
         public override int GetHashCode()
         {
             // Implementation where orders of the elements matters.
-            if (hashCode == Undefined)
+            if (HashCode == Undefined)
             {
                 var code = 0;
 
@@ -108,10 +108,10 @@ namespace Value
                     code = (code * 397) ^ (attribute == null ? 0 : attribute.GetHashCode());
                 }
 
-                hashCode = code;
+                HashCode = code;
             }
 
-            return hashCode;
+            return HashCode;
         }
 
     }

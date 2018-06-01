@@ -1,5 +1,5 @@
 // // --------------------------------------------------------------------------------------------------------------------
-// // <copyright file="SetByValueTests.cs">
+// // <copyright file="SetByValueShould.cs">
 // //     Copyright 2016
 // //           Thomas PIERRAIN (@tpierrain)    
 // //     Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,10 +20,10 @@ namespace Value.Tests.Samples
     using NUnit.Framework;
 
     [TestFixture]
-    public class SetByValueTests
+    public class SetByValueShould
     {
         [Test]
-        public void Should_consider_two_sets_with_same_items_equals()
+        public void Consider_two_sets_with_same_items_equals()
         {
             var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
             var set2 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
@@ -32,7 +32,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_consider_two_sets_with_same_items_in_different_order_equals()
+        public void Consider_two_sets_with_same_items_in_different_order_equals()
         {
             var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
             var set2 = new SetByValue<string> { "Maxime", "Anton", "Achille" };
@@ -41,7 +41,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_not_consider_a_classic_hashSet_and_a_HashSetByValue_Equals()
+        public void Not_consider_a_classic_hashSet_and_a_HashSetByValue_Equals()
         {
             var set1 = new HashSet<string> { "Achille", "Anton", "Maxime" };
             var set2 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
@@ -50,7 +50,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_consider_equals_two_ValueType_instances_that_aggregates_equivalent_SetByValue()
+        public void Consider_equals_two_ValueType_instances_that_aggregates_equivalent_SetByValue()
         {
             var threeCards = new ThreeCards("AS", "QD", "2H");
             var sameThreeCards = new ThreeCards("2H", "QD", "AS");
@@ -59,7 +59,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_consider_Not_equals_two_badly_implemented_ValueType_instances_that_aggregates_equivalent_HashSet()
+        public void Consider_Not_equals_two_badly_implemented_ValueType_instances_that_aggregates_equivalent_HashSet()
         {
             var threeCards = new ThreeCardsBadlyImplementedAsValueType("AS", "QD", "2H");
             var sameThreeCards = new ThreeCardsBadlyImplementedAsValueType("2H", "QD", "AS");
@@ -68,7 +68,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_change_its_hashcode_everytime_the_set_is_updated()
+        public void Change_its_hashcode_everytime_the_set_is_updated()
         {
             var set = new SetByValue<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var firstHashCode = set.GetHashCode();
@@ -116,7 +116,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_Contains()
+        public void Properly_expose_Contains()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -125,7 +125,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_CopyTo()
+        public void Properly_expose_CopyTo()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -139,7 +139,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_Count()
+        public void Properly_expose_Count()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -148,7 +148,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_IsProperSubsetOf()
+        public void Properly_expose_IsProperSubsetOf()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -157,7 +157,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_IsProperSupersetOf()
+        public void Properly_expose_IsProperSupersetOf()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -168,7 +168,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_IsReadOnly()
+        public void Properly_expose_IsReadOnly()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -177,7 +177,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_IsSubsetOf()
+        public void Properly_expose_IsSubsetOf()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -186,7 +186,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_IsSupersetOf()
+        public void Properly_expose_IsSupersetOf()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -195,7 +195,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_Overlaps()
+        public void Properly_expose_Overlaps()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -204,7 +204,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_properly_expose_SetEquals()
+        public void Properly_expose_SetEquals()
         {
             var originalSet = new HashSet<Card>() { Card.Parse("QC"), Card.Parse("TS") };
             var byValueSet = new SetByValue<Card>(originalSet);
@@ -213,7 +213,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_provide_different_GetHashCode_for_two_different_sets()
+        public void Provide_different_GetHashCode_for_two_different_sets()
         {
             var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
             var set2 = new SetByValue<string> { "Hendrix", "De Lucia", "Reinhart" };
@@ -222,7 +222,7 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_provide_same_GetHashCode_from_two_sets_with_same_values()
+        public void Provide_same_GetHashCode_from_two_sets_with_same_values()
         {
             var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
             var set2 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
@@ -231,12 +231,21 @@ namespace Value.Tests.Samples
         }
 
         [Test]
-        public void Should_provide_same_GetHashCode_from_two_sets_with_same_values_in_different_order()
+        public void Provide_same_GetHashCode_from_two_sets_with_same_values_in_different_order()
         {
             var set1 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
             var set2 = new SetByValue<string> { "Maxime", "Achille", "Anton" };
 
             Check.That(set2.GetHashCode()).IsEqualTo(set1.GetHashCode());
+        }
+
+        [Test]
+        public void Consider_two_sets_of_the_same_integers_Equals()
+        {
+            var set1 = new SetByValue<int>() { 1, 2, 3, 4, 5 };
+            var set2 = new SetByValue<int>() { 1, 2, 3, 4, 5 };
+            
+            Check.That(set2).IsEqualTo(set1);
         }
     }
 }

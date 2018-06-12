@@ -35,13 +35,13 @@ An *Entity* is an object that has a changeable state (often made by combining Va
 Our OO code bases are usually full of types with states and contain very few Value Type instances.
 DDD advises us to reverse the trend by not having *Entities* created by default, and to strongly increase our __usage of Value Types__. 
 
-This __will helps us to reduce side-effects within our OO base code__. A simple reflex, for great benefits.
+This __will help us reduce side-effects within our OO base code__. A simple reflex, for great benefits.
 
 ### Side effects, you said?
 
-Yes, because one of the problem we face when we code with Object Oriented (OO) languages like C# or java is the presence of __side-effects__. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) __makes our reasoning harder__. Doing Test Driven Development helps a lot, but is not enough to ease the reasoning about our code.
+Yes, because one of the problems we face when we code with Object Oriented (OO) languages like C# or java is the presence of __side-effects__. Indead, the ability for object instances to have their own state changed by other threads or by a specific combination of previous method calls (temporal coupling) __makes our reasoning harder__. Doing Test Driven Development helps a lot, but is not enough to ease the reasoning about our code.
 
-Being inspired by functional programming (FP) languages, __DDD suggests us to make our OO design more FP oriented in order to reduce those painful side-effects__. They are many things we can do for it. E.g.: 
+Being inspired by functional programming (FP) languages, __DDD suggests us to make our OO design more FP oriented in order to reduce those painful side-effects__. There are many things we can do for it. E.g.: 
  - to use and combine __functions__ instead of methods (that impact object states)
  - to embrace __CQS pattern__ for *Entity* objects (i.e. a paradigm where read methods never change state and write methods never return data)
  - to implement *Closure of Operations* whenever it's possible (to reduce coupling with other types)
@@ -58,7 +58,7 @@ __Yeah, let's focus on our business value now!__
 
 ## What's inside the box?
 
- - __ValueType<T>__: making all your Value Types deriving from this base class will allow you to __properly implement Equality__ (IEquatable) __and Unicity__ (GetHashCode()) on ALL your fields __in 1 line of code__. Very Handy!
+ - __ValueType<T>__: making all your Value Types inherit from this base class will allow you to __properly implement Equality__ (IEquatable) __and Unicity__ (GetHashCode()) on ALL your fields __in 1 line of code__. Very Handy!
 ```c#
     // 1. You inherit from ValueType<T> like this:
 	public class Amount : ValueType<Amount>
@@ -83,7 +83,7 @@ __Yeah, let's focus on our business value now!__
 
 ```
 
- - __ListByValue<T>__: A list with equality based on its content and not on the list's reference (i.e.: 2 different instances containing the same items in the same order will be equals). This collection decorator is __very useful for any ValueType that aggregates a list__
+ - __ListByValue<T>__: A list with equality based on its content and not on the list's reference (i.e.: 2 different instances containing the same items in the same order will be equal). This collection decorator is __very useful for any ValueType that aggregates a list__
 
  ```c#
       // when one of your ValueType aggregates a IList like this
@@ -98,7 +98,7 @@ __Yeah, let's focus on our business value now!__
       }
 ```
 
- - __SetByValue<T>__: A Set with equality based on its content and not on the Set's reference (i.e.: 2 different instances containing the same items will be equals whatever their storage order). This collection decorator is __very useful for any ValueType that aggregates a set__
+ - __SetByValue<T>__: A Set with equality based on its content and not on the Set's reference (i.e.: 2 different instances containing the same items will be equal whatever their storage order). This collection decorator is __very useful for any ValueType that aggregates a set__
 
 ```c#
       // when one of your ValueType aggregates a Set like this
@@ -117,7 +117,7 @@ __Yeah, let's focus on our business value now!__
 
 ## Usage samples of ValueTypes
 
-__Disclaimer:__ for the sake of clarity, the following code samples don't have behaviours to only focus here on the Equality concern. __Of course, a ValueType in DDD must embed behaviours to swallow complexity (it's not just a DTO or a POCO without responsibilities).__
+__Disclaimer:__ for the sake of clarity, the following code samples don't have behaviours so the focus here is on the Equality concern. __Of course, a ValueType in DDD must embed behaviours to swallow complexity (it's not just a DTO or a POCO without responsibilities).__
 
 Code Sample of a properly implemented ValueType:
 
@@ -152,7 +152,7 @@ Code Sample of a bad ValueType implementation:
 ```c#
     /// <summary>
     /// Bad ValueType implementation of ThreeCards since the GetAllAttributesToBeUsedForEquality() method 
-    /// returns the set directly, without decoring it with the SetByValue helper.
+    /// returns the set directly, without decorating it with the SetByValue helper.
     /// </summary>
     public class ThreeCardsBadlyImplementedAsValueType : ValueType<ThreeCards>
     {

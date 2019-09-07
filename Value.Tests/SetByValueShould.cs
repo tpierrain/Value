@@ -46,7 +46,7 @@ namespace Value.Tests.Samples
             var set1 = new HashSet<string> { "Achille", "Anton", "Maxime" };
             var set2 = new SetByValue<string> { "Achille", "Anton", "Maxime" };
 
-            Check.That(set2).IsNotEqualTo(set1);
+            Check.That(set2.Equals(set1)).IsFalse();
         }
 
         [Test]

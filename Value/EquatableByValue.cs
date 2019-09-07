@@ -65,27 +65,12 @@ namespace Value
 
             return EqualsImpl(otherEquatable);
         }
-        
+
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
-
-            T other;
-
-            try
-            {
-                // we use a static cast here since we can't use the 'as' operator for structs and other value type primitives
-                other = (T)obj;
-            }
-            catch (InvalidCastException e)
-            {
-                return false;
-            }
-
-            return Equals(other);
+            if (obj == null) return false;
+            if (obj is T other) return Equals(other);
+            return false;
         }
 
         protected abstract IEnumerable<object> GetAllAttributesToBeUsedForEquality();

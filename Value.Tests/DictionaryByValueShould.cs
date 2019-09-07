@@ -22,8 +22,8 @@ namespace Value.Tests
 
             var byValue1 = new DictionaryByValue<int, string>(dico1);
             var byValue2 = new DictionaryByValue<int, string>(dico2);
-
-            Check.That(dico1).IsNotEqualTo(dico2);
+            
+            Check.That(dico1.Equals(dico2)).IsFalse();
             Check.That(byValue1).IsEqualTo(byValue2);
         }
 
@@ -70,7 +70,7 @@ namespace Value.Tests
             var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } });
             var set = new SetByValue<KeyValuePair<int, string>>() { new KeyValuePair<int, string>(1, "uno"), new KeyValuePair<int, string>(4, "quatro"), new KeyValuePair<int, string>(3, "tres") };
 
-            Check.That(dico).IsNotEqualTo(set);
+            Check.That(dico.Equals(set)).IsFalse();
         }
 
         [Test]

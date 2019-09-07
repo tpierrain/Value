@@ -5,6 +5,9 @@ branches:
   - master
 configuration: Release
 platform: Any CPU
+before_build:
+  - nuget restore
+
 build_script:
   - cmd: build.cmd Release
 build:

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Value.Net45", "Value.Net45\Value.Net45.csproj", "{9D20346D-AD57-40AA-A438-59D8245F8AA3}"
 EndProject
@@ -23,16 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Value", "Value\Value.shproj", "{44709B35-26E8-4588-A87A-1727CDB11255}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Value.Standard", "Value.Standard\Value.Standard.csproj", "{E34876F1-8A7D-4B5C-940B-D1DFF1B639CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Value.Standard", "Value.Standard\Value.Standard.csproj", "{E34876F1-8A7D-4B5C-940B-D1DFF1B639CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Value.Net40", "Value.Net40\Value.Net40.csproj", "{833BCC87-B759-4502-8C32-93D396AE1357}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Value\Value.Shared.projitems*{44709b35-26e8-4588-a87a-1727cdb11255}*SharedItemsImports = 13
-		Value\Value.Shared.projitems*{833bcc87-b759-4502-8c32-93d396ae1357}*SharedItemsImports = 4
-		Value\Value.Shared.projitems*{9d20346d-ad57-40aa-a438-59d8245f8aa3}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -57,5 +52,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12957C47-723B-4BCF-B959-79D5BB8C2711}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Value\Value.Shared.projitems*{44709b35-26e8-4588-a87a-1727cdb11255}*SharedItemsImports = 13
+		Value\Value.Shared.projitems*{833bcc87-b759-4502-8c32-93d396ae1357}*SharedItemsImports = 4
+		Value\Value.Shared.projitems*{9d20346d-ad57-40aa-a438-59d8245f8aa3}*SharedItemsImports = 4
+		Value\Value.Shared.projitems*{e34876f1-8a7d-4b5c-940b-d1dff1b639cd}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

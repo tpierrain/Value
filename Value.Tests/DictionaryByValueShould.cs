@@ -23,8 +23,11 @@ namespace Value.Tests
             var byValue1 = new DictionaryByValue<int, string>(dico1);
             var byValue2 = new DictionaryByValue<int, string>(dico2);
 
-            Check.That(dico1).IsNotEqualTo(dico2);
-            Check.That(byValue1).IsEqualTo(byValue2);
+            Check.That(dico1==dico2).IsFalse();
+            Check.That(dico1.Equals(dico2)).IsFalse();
+
+            Check.That(byValue1 == byValue2).IsTrue();
+            Check.That(byValue1.Equals(byValue2)).IsTrue();
         }
 
         [Test]
@@ -67,10 +70,12 @@ namespace Value.Tests
         [Test]
         public void Consider_an_instance_not_equals_with_SetByValue_instance()
         {
-            var dico = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } });
-            var set = new SetByValue<KeyValuePair<int, string>>() { new KeyValuePair<int, string>(1, "uno"), new KeyValuePair<int, string>(4, "quatro"), new KeyValuePair<int, string>(3, "tres") };
+            var dictionaryByValue = new DictionaryByValue<int, string>(new Dictionary<int, string>() { { 1, "uno" }, { 4, "quatro" }, { 3, "tres" } });
+            var setByValue = new SetByValue<KeyValuePair<int, string>>() { new KeyValuePair<int, string>(1, "uno"), 
+                                                                    new KeyValuePair<int, string>(4, "quatro"), 
+                                                                    new KeyValuePair<int, string>(3, "tres") };
 
-            Check.That(dico).IsNotEqualTo(set);
+            Check.That(dictionaryByValue.Equals(setByValue)).IsFalse();
         }
 
         [Test]

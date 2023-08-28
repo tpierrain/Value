@@ -61,7 +61,7 @@ __Yeah, let's focus on our business value now!__
  - __ValueType<T>__: making all your Value Types deriving from this base class will allow you to __properly implement Equality__ (IEquatable) __and Unicity__ (GetHashCode()) on ALL your fields __in 1 line of code__. Very Handy!
 ```c#
     // 1. You inherit from ValueType<T> like this:
-	public class Amount : ValueType<Amount>
+    public class Amount : ValueType<Amount>
     {
         private readonly decimal quantity;
         private readonly Currency currency;
@@ -77,7 +77,7 @@ __Yeah, let's focus on our business value now!__
             return new List<object>() { this.quantity, this.currency }; // The line of code I was talking about
         }
 
-		// And that's all folks!
+        // And that's all folks!
     }
 
 
